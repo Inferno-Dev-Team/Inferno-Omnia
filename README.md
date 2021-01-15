@@ -1,16 +1,17 @@
-﻿#Inferno Omnia
+# Inferno Omnia
+
 The Inferno Development Team's all-in-one solution to Bloons Tower Defense 6 Mods with planned support for BATTD. This is the most feature rich Mod Manager for BTD.
 
 ![](Resources/Inferno%20Splash%20Screen%20Mini.png)
 
 ---------------------------
-##Requirements
+## Requirements
 
-###[.NET Framework v4.8](https://go.microsoft.com/fwlink/?LinkId=2085155)
-###[Microsoft Visual C](https://aka.ms/vs/17/release/vc_redist.x64.exe)
+### [.NET Framework v4.8](https://go.microsoft.com/fwlink/?LinkId=2085155)
+### [Microsoft Visual C](https://aka.ms/vs/17/release/vc_redist.x64.exe)
 
 ---------------------------
-##Plans
+## Plans
 
 |Feature|Implemented|
 |-------|-----------|
@@ -28,9 +29,9 @@ The Inferno Development Team's all-in-one solution to Bloons Tower Defense 6 Mod
 |Full BATTD Integration|❌|
 ---------------------------
 
-##Commiting to the repo
+## Commiting to the repo
 Make sure you follow these simple rules and we will have no issues accepting your PRs
-###When to use braces
+### When to use braces
 ```c#
 if (true)
     runCode();
@@ -40,5 +41,5 @@ foreach (var a in collection) {
     a.run();
 }
 ```
-###General style
+### General style
 We accept all code styles for PRs but would prefer things that follow the existing code as to not confuse readers.
