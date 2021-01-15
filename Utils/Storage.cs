@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace Inferno_Mod_Manager.Utils
 {
@@ -29,6 +30,10 @@ namespace Inferno_Mod_Manager.Utils
         public static readonly Dictionary<double, string> offsetDict = versions.Zip(offsets, (ver, off) => new { ver, off }).ToDictionary(item => item.ver, item => item.off);
         public static readonly string repo = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoModManager\\repo.json");
         public static readonly string mod = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoModManager\\mod.json");
-        public static readonly AppDomain domain = AppDomain.CreateDomain("InfernoOmnia");
+        public static WebClient client = new();
+
+        static Storage() {
+            client.Headers.Add("user-agent", "Inferno Omnia");
+        }
     }
 }

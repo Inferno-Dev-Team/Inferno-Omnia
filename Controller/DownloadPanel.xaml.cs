@@ -56,7 +56,7 @@ namespace Inferno_Mod_Manager.Controller
             var m = ((button.Parent as Grid).Parent as DownloadPanel).mdata;
 
             var web = new WebClient();
-            web.Headers.Add("user-agent", "Inferno Mod Manager");
+            web.Headers.Add("user-agent", "Inferno Omnia");
             web.DownloadProgressChanged += (o, args) =>
             {
                 MainWindow.Instance.progressBar.Value = args.ProgressPercentage;

@@ -14,6 +14,7 @@ namespace Inferno_Mod_Manager
         public static void Main(string[] args) {
             SteamClient.Init(960090);
             Storage.InstallDir = SteamApps.AppInstallDir();
+            MelonHandler.EnsureMelonInstalled();
             FileAssociations.EnsureAssociationsSet();
             _ = Directory.CreateDirectory(Storage.InstallDir + @"\Mods\Inferno");
             _ = Directory.CreateDirectory(Storage.InstallDir + @"\Mods\Inferno\Disabled");
@@ -29,7 +30,7 @@ namespace Inferno_Mod_Manager
                     }
 
             if (Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno").Combine(Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno\Disabled")).Length > 0) {
-                bool flag = false;
+                var flag = false;
                 foreach (var file in Directory.GetFiles(Storage.InstallDir + @"\Mods", "*.dll").Combine(Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno\Disabled"))) {
                     MelonHandler.GetMelonAttrib(file, out var att);
                     if (att != null)

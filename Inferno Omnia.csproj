@@ -109,6 +109,8 @@
       <Private>True</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Web.Extensions">
       <Private>True</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -197,7 +199,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ConsoleManager.cs" />
     <Compile Include="Controller\AchievementPanel.xaml.cs">
       <DependentUpon>AchievementPanel.xaml</DependentUpon>
     </Compile>
@@ -280,6 +281,7 @@
     <Resource Include="Resources\KosmicAuthor.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="README.md" />
     <None Include="Resources\Inferno API Injector.dll" />
     <Resource Include="Controller\QuestionMark.png" />
     <Resource Include="Icons\Launch.png" />
