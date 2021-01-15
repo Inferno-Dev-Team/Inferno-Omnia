@@ -8,7 +8,7 @@ The Inferno Development Team's all-in-one solution to Bloons Tower Defense 6 Mod
 ## Requirements
 
 ### [.NET Framework v4.8](https://go.microsoft.com/fwlink/?LinkId=2085155)
-### [Microsoft Visual C](https://aka.ms/vs/17/release/vc_redist.x64.exe)
+### [Microsoft Visual C](https://www.microsoft.com/en-us/download/details.aspx?id=48145)
 
 ---------------------------
 ## Plans

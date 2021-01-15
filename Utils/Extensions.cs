@@ -48,5 +48,13 @@ namespace Inferno_Mod_Manager.Utils
                 l.Add(v);
             return l.ToArray();
         }
+
+        public static bool ContainsAll(this string t, params string[] a) {
+            foreach (var b in a)
+                if (!t.Contains(b))
+                    return false;
+
+            return true;
+        }
     }
 }

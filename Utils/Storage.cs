@@ -28,8 +28,8 @@ namespace Inferno_Mod_Manager.Utils
                                                     "[4430074,4430489] [4435322,4435737] [4434474,4434889]").Split(' ');
         public static readonly Dictionary<double, string> manifestDict = versions.Zip(manifests, (ver, man) => new { ver, man }).ToDictionary(item => item.ver, item => item.man);
         public static readonly Dictionary<double, string> offsetDict = versions.Zip(offsets, (ver, off) => new { ver, off }).ToDictionary(item => item.ver, item => item.off);
-        public static readonly string repo = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoModManager\\repo.json");
-        public static readonly string mod = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoModManager\\mod.json");
+        public static readonly string repo = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\repo.json");
+        public static readonly string mod = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\mod.json");
         public static WebClient client = new();
 
         static Storage() {

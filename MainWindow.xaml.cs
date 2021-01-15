@@ -138,7 +138,15 @@ namespace Inferno_Mod_Manager
         public void RefreshDownloadsList()
         {
             stackPanelDownload.Children.Clear();
-            Storage.ModsList = WebDownloader.GetAllData();
+            try {
+                Storage.ModsList = WebDownloader.GetAllData();
+            } catch (Exception e) {
+                MessageBox.Show($"Error! {e.GetType().FullName}", "Clearing cached repos");
+                WebDownloader.Repos = new();
+                WebDownloader.IfBlankSet();
+                Storage.ModsList = WebDownloader.GetAllData();
+            }
+
             for (var i = 0; i < Storage.ModsList.Count; i++)
             {
                 var modData = Storage.ModsList[i].Split('<');
@@ -289,23 +297,5 @@ namespace Inferno_Mod_Manager
         private void Window_Loaded(object sender, RoutedEventArgs e) => InfernoChecker.PI_as_0x000003(InfernoChecker.PI_as_0x000002(InfernoChecker.PI_as_0x000001()));
 
         private void DiscordButton_Click(object sender, RoutedEventArgs e) => Process.Start("https://discord.gg/D7v6h3KSQN");
-
-        [SuppressUnmanagedCodeSecurity]
-        private record NativeMethods
-        {
-            [StructLayout(LayoutKind.Sequential)]
-            public struct MARGINS
-            {
-                public int cxLeftWidth;      // width of left border that retains its size
-                public int cxRightWidth;     // width of right border that retains its size
-                public int cyTopHeight;      // height of top border that retains its size
-                public int cyBottomHeight;   // height of bottom border that retains its size
-            };
-
-            [DllImport("DwmApi.dll")]
-            public static extern int DwmExtendFrameIntoClientArea(
-                IntPtr hwnd,
-                ref MARGINS pMarInset);
-        }
     }
 }
