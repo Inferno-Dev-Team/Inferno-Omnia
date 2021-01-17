@@ -226,7 +226,7 @@ namespace Inferno_Mod_Manager
                 if (inputDialog.ShowDialog() == true) {
                     WebDownloader.Repos.Add(inputDialog.Answer);
                 } else {
-                    MessageBox.Show("Repo Addition Canclled!");
+                    MessageBox.Show("Repo Addition Cancelled!");
                     return;
                 }
 
