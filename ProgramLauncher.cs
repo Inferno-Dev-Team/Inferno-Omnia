@@ -41,7 +41,7 @@ namespace Inferno_Mod_Manager
                 foreach (var file in Directory.GetFiles(Storage.InstallDir + @"\Mods", "*.dll").Combine(Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno\Disabled"))) {
                     MelonHandler.GetMelonAttrib(file, out var att);
                     if (att != null)
-                    flag |= att.Name.Equals("Inferno API Injector");
+                        flag |= att.Name.Equals("Inferno API Injector");
                 }
                 if (!flag)
                     File.Create(Storage.InstallDir + @"\Mods\Inferno API Injector.dll").Write(Resources.Inferno_API_Injector, 0, Resources.Inferno_API_Injector.Length);

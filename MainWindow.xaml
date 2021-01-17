@@ -3,10 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Inferno_Mod_Manager"
-        xmlns:uc="clr-namespace:Inferno_Mod_Manager.Controller"
-        xmlns:ui="http://schemas.modernwpf.com/2019"
-        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Inferno_Mod_Manager.MainWindow"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    x:Class="Inferno_Mod_Manager.MainWindow"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -102,7 +100,7 @@
                     <ui:ThemeShadowChrome OpacityMask="Red" Depth="50" Grid.Row="0">
                         <Image Source="Resources/BaydockAuthor.png" RenderOptions.BitmapScalingMode="Fant" Width="100"/>
                     </ui:ThemeShadowChrome>
-                    <Label Content="Baydock#7284" TextOptions.TextFormattingMode="Ideal" Grid.Column="1" Grid.Row="0" FontSize="80">
+                    <Label Content="Baydock#7284" VerticalAlignment="Center" TextOptions.TextFormattingMode="Ideal" Grid.Column="1" Grid.Row="0" FontSize="80">
                         <Label.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <LinearGradientBrush.RelativeTransform>
@@ -122,7 +120,7 @@
                     <ui:ThemeShadowChrome OpacityMask="Red" Depth="50" Grid.Row="1">
                         <Image Source="Resources/KosmicAuthor.png" RenderOptions.BitmapScalingMode="Fant" Width="100"/>
                     </ui:ThemeShadowChrome>
-                    <Label Content="KosmicDev#9999" TextOptions.TextFormattingMode="Ideal" Grid.Column="1" Grid.Row="1" FontSize="80">
+                    <Label Content="KosmicDev#9999" VerticalAlignment="Center" TextOptions.TextFormattingMode="Ideal" Grid.Column="1" Grid.Row="1" FontSize="80">
                         <Label.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <LinearGradientBrush.RelativeTransform>

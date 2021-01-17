@@ -1,19 +1,19 @@
 ﻿using System.Diagnostics;
 using System.Linq;
-using System.Text.RegularExpressions;
 using DiscordRPC;
-using Inferno_Mod_Manager.Controller;
 using Microsoft.Win32;
 
 namespace Inferno_Mod_Manager.Utils {
     public class ProcessHelpers {
         public static void RunWithRPC(ProcessStartInfo psi, RichPresence newRPC) {
-            var process = new Process();
-            process.StartInfo = psi;
-            process.EnableRaisingEvents = true;
+            var process = new Process
+            {
+                StartInfo = psi,
+                EnableRaisingEvents = true
+            };
             process.Exited += (o, args) => App.client.SetPresence(App.defaultRP);
             App.client.SetPresence(newRPC);
-            process.Start();
+            _ = process.Start();
         }
 
         // modified from https://stackoverflow.com/a/60354788/12427280

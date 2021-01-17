@@ -25,10 +25,10 @@ namespace Inferno_Mod_Manager.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2021-01-15")]
-        public global::System.DateTime BuildTime {
+        [global::System.Configuration.DefaultSettingValueAttribute("2021-01-17")]
+        public global::System.DateTime BuildDate {
             get {
-                return ((global::System.DateTime)(this["BuildTime"]));
+                return ((global::System.DateTime)(this["BuildDate"]));
             }
         }
     }
