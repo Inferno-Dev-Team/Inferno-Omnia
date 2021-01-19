@@ -48,9 +48,9 @@
                     <ScrollViewer Height="Auto" Margin="0,50,0,0" Grid.ColumnSpan="2">
                         <StackPanel x:Name="stackPanel" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto"/>
                     </ScrollViewer>
-                    <Label VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Margin="63,16,0,0" Content="Launch" Width="87" Grid.ColumnSpan="2" Grid.Column="0"/>
-                    <Label VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Margin="193,16,0,0" Content="Launch (No Mods)" Width="115" Grid.ColumnSpan="2"/>
-                    <Label VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Margin="393,16,0,0" Content="Add Mods" Width="115" Grid.ColumnSpan="2"/>
+                    <Label VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Margin="63,16,0,0" Content="Launch" Width="87" Grid.ColumnSpan="2" Grid.Column="0" Foreground="White" />
+                    <Label VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Margin="193,16,0,0" Content="Launch (No Mods)" Width="115" Grid.ColumnSpan="2" Foreground="White" />
+                    <Label VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Margin="393,16,0,0" Content="Add Mods" Width="115" Grid.ColumnSpan="2" Foreground="White" />
                     <Button x:Name="LaunchGame" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" Height="50" Margin="10,2,0,0" Click="LaunchGame_Click" Grid.ColumnSpan="2" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
                         <Image Source="Icons/Launch.png" RenderOptions.BitmapScalingMode="Fant" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="130"/>
                     </Button>
@@ -68,7 +68,7 @@
                         <ColumnDefinition Width="8*"/>
                         <ColumnDefinition Width="189*"/>
                     </Grid.ColumnDefinitions>
-                    <Label VerticalAlignment="Top" HorizontalAlignment="Left" Height="20" Margin="63,16,0,0" Content="Add Repo" Width="100" Grid.ColumnSpan="2"/>
+                    <Label VerticalAlignment="Top" HorizontalAlignment="Left" Height="20" Margin="63,16,0,0" Content="Add Repo" Width="100" Grid.ColumnSpan="2" Foreground="White"/>
                     <Button x:Name="Add_Repo_Button" Width="125" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,2,0,0" Click="Add_Repo_Button_Click" Grid.ColumnSpan="2" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
                         <Image Source="Icons/AddRepo.png" RenderOptions.BitmapScalingMode="Fant" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="128"/>
                     </Button>

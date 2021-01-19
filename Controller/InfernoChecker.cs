@@ -23,15 +23,11 @@ namespace Inferno_Mod_Manager.Controller
         [DllImport(InfernoChecker_)]
         private static extern void as_0x000003(bool a);
 
-        [DllImport(InfernoChecker_)]
-        private static extern unsafe byte* as_0x000004();
-
         //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 
         public static float PI_as_0x000000() => as_0x000000();
         public static bool PI_as_0x000001() => as_0x000001();
         public static bool PI_as_0x000002(bool a) => as_0x000002(a);
         public static void PI_as_0x000003(bool a) => as_0x000003(a);
-        public static unsafe byte* PI_as_0x000004(bool a, object o, int e, ModPanel f) => as_0x000004();
     }
 }

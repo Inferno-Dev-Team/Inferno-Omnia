@@ -55,7 +55,7 @@ namespace Inferno_Mod_Manager
                     var m = new Mod
                     {
                         Name = Path.GetFileNameWithoutExtension(files[i]),
-                        Type = Path.GetExtension(files[i]).Contains("dll") ? "Melon Mod" : (Path.GetExtension(files[i]).Contains("inferno") ? "Inferno Mod" : "BTD 6 Mod"),
+                        Type = Path.GetExtension(files[i]).Contains("dll") ? "Melon Mod" : Path.GetExtension(files[i]).Contains("inferno") ? "Inferno Mod" : "BTD 6 Mod",
                         CanonicalLocation = files[i],
                         Enabled = true
                     };
@@ -227,6 +227,7 @@ namespace Inferno_Mod_Manager
                     WebDownloader.Repos.Add(inputDialog.Answer);
                 } else {
                     MessageBox.Show("Repo Addition Cancelled!");
+                    RefreshModList();
                     return;
                 }
 
@@ -250,9 +251,7 @@ namespace Inferno_Mod_Manager
                     Tags = inputDialogName.Answer4;
                     Version = inputDialogName.Answer5;
                     PNGUrl = inputDialogName.Answer6;
-                }
-                else
-                {
+                } else {
                     MessageBox.Show("Mod Addition Cancelled!");
                     return;
                 }
@@ -262,7 +261,7 @@ namespace Inferno_Mod_Manager
                 if (Path.GetExtension(file).Contains("dll")) {
                     MelonHandler.GetMelonAttrib(file, out var att);
                     if (att != null)
-                        if ((ModManifest.Instance ^ att.Name) == ModManifest.TemplateMod || (ModManifest.Instance ^ Path.GetFileName(file)) == ModManifest.TemplateMod)
+                        if ((ModManifest.Instance ^ att.Name) != ModManifest.TemplateMod || (ModManifest.Instance ^ Path.GetFileName(file)) != ModManifest.TemplateMod)
                             throw new("Mod already exists!");
                 }
 

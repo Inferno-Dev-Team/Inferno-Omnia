@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Inferno Mod Manager")]
+[assembly: AssemblyTitle("Inferno Omnia")]
 [assembly: AssemblyDescription("The Inferno Mod Manager is a WPF Application made for the sole purpose of allowing the end user to install modifications to games found on Steam.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("1330 Studios LLC")]
-[assembly: AssemblyProduct("Inferno Mod Manager")]
+[assembly: AssemblyProduct("Inferno Omnia")]
 [assembly: AssemblyCopyright("Copyright © 1330 Studios LLC 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -27,8 +27,6 @@ using System.Windows;
 //in your source files, set the <UICulture> to en-US.  Then uncomment
 //the NeutralResourceLanguage attribute below.  Update the "en-US" in
 //the line below to match the UICulture setting in the project file.
-
-//[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
 
 
 [assembly: ThemeInfo(
@@ -51,6 +49,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.24")]
-[assembly: AssemblyFileVersion("1.0.0.42")]
-[assembly: NeutralResourcesLanguage("")]
+[assembly: AssemblyVersion("1.0.0.25")]
+[assembly: AssemblyFileVersion("1.0.0.43")]
