@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inferno_Mod_Manager.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,7 +9,7 @@ namespace Inferno_Mod_Manager.Utils
     internal class Storage
     {
         public static string InstallDir { get; set; }
-        public static List<string> ModsList { get; set; }
+        public static List<Mod> ModsList { get; set; }
 
         public static readonly double[] versions = ("7.1 7.2 8.1 9.0 9.1 10.0 10.1 10.2 11.0 11.1 11.2 12.0 12.1 12.2 12.3 13.0 13.1 " +
                                                     "14.0 14.1 14.2 15.0 15.1 15.2 16.0 16.1 16.2 17.0 17.1 18.0 18.1 19.0 19.1 19.2").Split(' ').ToDoubleArray();

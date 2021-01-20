@@ -139,35 +139,27 @@ namespace Inferno_Mod_Manager
         {
             stackPanelDownload.Children.Clear();
             try {
-                Storage.ModsList = WebDownloader.GetAllData();
+                foreach (var a in WebDownloader.GetAllData()) {
+                    var aa = JsonConvert.DeserializeObject<List<Mod>>(a);
+                    foreach (var aaa in aa) {
+                        Storage.ModsList.Add(aaa);
+                    }
+                }
             } catch (Exception e) {
                 MessageBox.Show($"Error! {e.GetType().FullName}", "Clearing cached repos");
                 WebDownloader.Repos = new();
                 WebDownloader.IfBlankSet();
-                Storage.ModsList = WebDownloader.GetAllData();
+                foreach (var a in WebDownloader.GetAllData()) {
+                    var aa = JsonConvert.DeserializeObject<List<Mod>>(a);
+                    foreach (var aaa in aa) Storage.ModsList.Add(aaa);
+                }
             }
-
             for (var i = 0; i < Storage.ModsList.Count; i++)
             {
-                var modData = Storage.ModsList[i].Split('<');
-                if (modData.Length < 8)
-                    continue;
+                var modData = Storage.ModsList[i];
 
-                if ((ModManifest.Instance ^ modData[1]) == null || (ModManifest.Instance ^ modData[1]) == ModManifest.TemplateMod)
-                {
-                    var m = new Mod
-                    {
-                        DownloadUrl = modData[0],
-                        Name = modData[1],
-                        Author = modData[2],
-                        Description = modData[3],
-                        Tags = modData[4],
-                        Type = modData[5],
-                        PNGUrl = modData[6],
-                        Version = modData[7]
-                    };
-                    stackPanelDownload.Children.Add(new DownloadPanel(m));
-                }
+                if ((ModManifest.Instance ^ modData.Name) == null || (ModManifest.Instance ^ modData.Name) == ModManifest.TemplateMod) // First part is prolly always gonna be true.
+                    stackPanelDownload.Children.Add(new DownloadPanel(modData));
             }
         }
 
@@ -291,7 +283,7 @@ namespace Inferno_Mod_Manager
 
         private void LaunchGame_Click(object sender, RoutedEventArgs e) => ProcessHelpers.RunWithRPC(new(Storage.InstallDir + @"\BloonsTD6.exe"), App.btd6ModdedRP);
 
-        private void LaunchGameNoMods_Click(object sender, RoutedEventArgs e) => ProcessHelpers.RunWithRPC(new("" + Storage.InstallDir + @"\BloonsTD6.exe", "--no-mods"), App.btd6RP);
+        private void LaunchGameNoMods_Click(object sender, RoutedEventArgs e) => ProcessHelpers.RunWithRPC(new(Storage.InstallDir + @"\BloonsTD6.exe", "--no-mods"), App.btd6RP);
 
         private void Window_Loaded(object sender, RoutedEventArgs e) => InfernoChecker.PI_as_0x000003(InfernoChecker.PI_as_0x000002(InfernoChecker.PI_as_0x000001()));
 
