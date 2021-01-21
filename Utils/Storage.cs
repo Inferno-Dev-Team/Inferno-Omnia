@@ -10,11 +10,12 @@ namespace Inferno_Mod_Manager.Utils
     {
         public static string InstallDir { get; set; }
 
+        private static List<Mod> _modsList = null;
         public static List<Mod> ModsList {
             get {
-                if (ModsList == null)
-                    ModsList = new();
-                return new();
+                if (_modsList == null)
+                    _modsList = new();
+                return _modsList;
             }
             set { }
         }
