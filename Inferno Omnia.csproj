@@ -98,7 +98,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MelonLoader.ModHandler">
-      <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\MelonLoader.ModHandler.dll</HintPath>
+      <HintPath>.\MelonLoader.ModHandler.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <Private>True</Private>
@@ -299,6 +299,9 @@
     <Resource Include="Resources\KosmicAuthor.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="steam_api64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="README.md" />
     <None Include="Resources\Inferno API Injector.dll" />
     <Resource Include="Controller\QuestionMark.png" />
