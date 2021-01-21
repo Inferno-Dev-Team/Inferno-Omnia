@@ -144,7 +144,7 @@ namespace Inferno_Mod_Manager
                     foreach (var aaa in aa) if (aaa != null) Storage.ModsList.Add(aaa);
                 }
             } catch (Exception e) {
-                MessageBox.Show($"Error! {e.GetType().FullName}", "Clearing cached repos");
+                //MessageBox.Show($"Error! {e.GetType().FullName}", "Clearing cached repos");
                 WebDownloader.Repos = new();
                 WebDownloader.IfBlankSet();
                 foreach (var a in WebDownloader.GetAllData()) {
