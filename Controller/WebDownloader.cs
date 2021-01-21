@@ -3,7 +3,7 @@ using System.Net;
 
 namespace Inferno_Mod_Manager.Controller {
     public class WebDownloader {
-        public static List<string> Repos { get; set; }
+        public static List<string> Repos { get; set; } = null;
 
         public static List<string> GetAllData() {
             var compList = new List<string>();

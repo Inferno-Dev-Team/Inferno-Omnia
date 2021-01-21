@@ -139,12 +139,13 @@ namespace Inferno_Mod_Manager
         {
             stackPanelDownload.Children.Clear();
             try {
+                WebDownloader.IfBlankSet();
                 foreach (var a in WebDownloader.GetAllData()) {
                     var aa = JsonConvert.DeserializeObject<List<Mod>>(a, new JsonSerializerSettings{DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore, ReferenceLoopHandling = ReferenceLoopHandling.Ignore});
                     foreach (var aaa in aa) if (aaa != null) Storage.ModsList.Add(aaa);
                 }
             } catch (Exception e) {
-                //MessageBox.Show($"Error! {e.GetType().FullName}", "Clearing cached repos");
+                MessageBox.Show($"Error! {e.GetType().FullName}", "Clearing cached repos");
                 WebDownloader.Repos = new();
                 WebDownloader.IfBlankSet();
                 foreach (var a in WebDownloader.GetAllData()) {
