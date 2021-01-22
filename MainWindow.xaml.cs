@@ -209,6 +209,16 @@ namespace Inferno_Mod_Manager
             else {WebDownloader.Repos = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(Storage.repo));}
         }
 
+        public static void SetupSettings()
+        {
+            if (!File.Exists(Storage.usr))
+            {
+                File.Create(Storage.usr).Close();
+                File.WriteAllText(Storage.usr, JsonConvert.SerializeObject(Storage.Settings));
+            }
+            else {Storage.Settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Storage.usr));}
+        }
+
         private void Window_Closing(object sender, CancelEventArgs e) => SteamClient.Shutdown();
 
         private void Add_Repo_Button_Click(object sender, RoutedEventArgs e) {

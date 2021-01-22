@@ -14,9 +14,11 @@ namespace Inferno_Mod_Manager
     {
         [STAThread]
         public static void Main(string[] args) {
-            if (!ProcessHelpers.IsVC2019x64Installed()) {
-                MessageBox.Show("You do not have Visual C installed! Continue to install it.");
+            MainWindow.SetupSettings();
+            if (!ProcessHelpers.IsVC2019x64Installed() && !Storage.Settings.ShownVCScreen) {
+                MessageBox.Show("You do not have Visual C installed! Continue to install it.\nTHIS WILL NOT BE SHOWN AGAIN!\nDO NOT REPORT THE APP NOT RUNNING IF YOU DIDNT INSTALL THIS");
                 Process.Start("https://www.microsoft.com/en-us/download/details.aspx?id=48145");
+                Storage.Settings.ShownVCScreen = true;
                 throw new("Need Visual C Installed!");
             }
             SteamClient.Init(960090);

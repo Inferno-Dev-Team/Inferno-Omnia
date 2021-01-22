@@ -1,8 +1,10 @@
 ﻿using Inferno_Mod_Manager.Controller;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace Inferno_Mod_Manager.Utils
 {
@@ -17,7 +19,17 @@ namespace Inferno_Mod_Manager.Utils
                     _modsList = new();
                 return _modsList;
             }
-            set { }
+            set => _modsList = value;
+        }
+
+        private static Settings _settings = null;
+        public static Settings Settings {
+            get {
+                if (_settings == null)
+                    _settings = new();
+                return _settings;
+            }
+            set => _settings = value;
         }
 
         public static readonly double[] versions = ("7.1 7.2 8.1 9.0 9.1 10.0 10.1 10.2 11.0 11.1 11.2 12.0 12.1 12.2 12.3 13.0 13.1 " +
@@ -40,6 +52,7 @@ namespace Inferno_Mod_Manager.Utils
         public static readonly Dictionary<double, string> offsetDict = versions.Zip(offsets, (ver, off) => new { ver, off }).ToDictionary(item => item.ver, item => item.off);
         public static readonly string repo = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\repo.json");
         public static readonly string mod = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\mod.json");
+        public static readonly string usr = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\userCache.json");
         public static WebClient client = new();
 
         static Storage() {

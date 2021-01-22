@@ -234,6 +234,7 @@
     <Compile Include="Controller\OneAnswerInputDialogWindow.xaml.cs">
       <DependentUpon>OneAnswerInputDialogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Settings.cs" />
     <Compile Include="Utils\Storage.cs" />
     <Compile Include="Controller\SupportedGames.cs" />
     <Compile Include="Controller\WebDownloader.cs" />
