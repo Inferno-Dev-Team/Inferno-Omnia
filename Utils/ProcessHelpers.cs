@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using DiscordRPC;
 using Microsoft.Win32;
 
@@ -24,6 +25,7 @@ namespace Inferno_Mod_Manager.Utils {
                 if (dependencies == null) return false;
 
                 foreach (var subKeyName in dependencies.GetSubKeyNames().Where(n => !n.ToLower().Contains("dotnet") && !n.ToLower().Contains("microsoft"))) {
+                    MessageBox.Show(subKeyName);
                     if (subKeyName.ContainsAll("VC", "redist"))
                         return true;
                 }

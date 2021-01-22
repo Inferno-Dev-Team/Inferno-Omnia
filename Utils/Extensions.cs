@@ -51,7 +51,7 @@ namespace Inferno_Mod_Manager.Utils
 
         public static bool ContainsAll(this string t, params string[] a) {
             foreach (var b in a)
-                if (!t.Contains(b))
+                if (!t.ToLower().Contains(b.ToLower()))
                     return false;
 
             return true;

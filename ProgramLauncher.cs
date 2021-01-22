@@ -17,7 +17,7 @@ namespace Inferno_Mod_Manager
             MainWindow.SetupSettings();
             if (!ProcessHelpers.IsVC2019x64Installed() && !Storage.Settings.ShownVCScreen) {
                 MessageBox.Show("You do not have Visual C installed! Continue to install it.\nTHIS WILL NOT BE SHOWN AGAIN!\nDO NOT REPORT THE APP NOT RUNNING IF YOU DIDNT INSTALL THIS");
-                Process.Start("https://www.microsoft.com/en-us/download/details.aspx?id=48145");
+                Process.Start("https://aka.ms/vs/16/release/VC_redist.x64.exe");
                 Storage.Settings.ShownVCScreen = true;
                 throw new("Need Visual C Installed!");
             }
