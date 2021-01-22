@@ -24,11 +24,9 @@ namespace Inferno_Mod_Manager.Utils {
             using (var dependencies = Registry.LocalMachine.OpenSubKey(dependenciesPath)) {
                 if (dependencies == null) return false;
 
-                foreach (var subKeyName in dependencies.GetSubKeyNames().Where(n => !n.ToLower().Contains("dotnet") && !n.ToLower().Contains("microsoft"))) {
-                    MessageBox.Show(subKeyName);
+                foreach (var subKeyName in dependencies.GetSubKeyNames().Where(n => !n.ToLower().Contains("dotnet") && !n.ToLower().Contains("microsoft")))
                     if (subKeyName.ContainsAll("VC", "redist"))
                         return true;
-                }
             }
 
             return false;
