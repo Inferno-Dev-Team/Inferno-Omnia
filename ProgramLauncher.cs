@@ -21,10 +21,17 @@ namespace Inferno_Mod_Manager
                 Storage.Settings.ShownVCScreen = true;
                 throw new("Need Visual C Installed!");
             }
-            SteamClient.Init(960090);
-            Storage.InstallDir = SteamApps.AppInstallDir();
-            MelonHandler.EnsureMelonInstalled();
-            FileAssociations.EnsureAssociationsSet();
+
+            try {
+                SteamClient.Init(960090);
+                Storage.InstallDir = SteamApps.AppInstallDir();
+                MelonHandler.EnsureMelonInstalled();
+                FileAssociations.EnsureAssociationsSet();
+            }
+            catch (Exception e) {
+                MessageBox.Show("ERROR 0x3ef93 PLEASE REPORT IN THE DISCORD");
+            }
+
             _ = Directory.CreateDirectory(Storage.InstallDir + @"\Mods\Inferno");
             _ = Directory.CreateDirectory(Storage.InstallDir + @"\Mods\Inferno\Disabled");
             _ = Directory.CreateDirectory(Storage.InstallDir + @"\Mods");
