@@ -3,9 +3,11 @@ using Inferno_Mod_Manager.MelonMods;
 using Inferno_Mod_Manager.Utils;
 using Steamworks;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using Inferno_Mod_Manager.Controller;
 using Inferno_Mod_Manager.Properties;
 
 namespace Inferno_Mod_Manager
@@ -21,6 +23,13 @@ namespace Inferno_Mod_Manager
                 Storage.Settings.ShownVCScreen = true;
                 throw new("Need Visual C Installed!");
             }
+
+            var mtr = new List<Mod>();
+            foreach (var a in (ModManifest.Instance * typeof(Mod)))
+                if (!File.Exists((ModManifest.Instance ^ a.Name).CanonicalLocation))
+                    mtr.Add(a);
+
+            foreach (var remove in mtr) ModManifest.Instance -= remove;
 
             try {
                 SteamClient.Init(960090);

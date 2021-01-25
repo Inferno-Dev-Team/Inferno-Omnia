@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Controls;
 using Inferno_Mod_Manager.Utils;
 using Microsoft.Win32;
@@ -157,7 +158,7 @@ namespace Inferno_Mod_Manager
             {
                 var modData = Storage.ModsList[i];
 
-                if ((ModManifest.Instance ^ modData.Name) == null || (ModManifest.Instance ^ modData.Name) == ModManifest.TemplateMod) // First part is prolly always gonna be true.
+                if ((ModManifest.Instance ^ modData.Name) == ModManifest.TemplateMod) // First part is prolly always gonna be false.
                     stackPanelDownload.Children.Add(new DownloadPanel(modData));
             }
         }
