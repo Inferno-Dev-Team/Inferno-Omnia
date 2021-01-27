@@ -136,23 +136,28 @@ namespace Inferno_Mod_Manager
             }
         }
 
+        private void ParseDownloadsList() {
+            WebDownloader.IfBlankSet();
+            foreach (var a in WebDownloader.GetAllData()) {
+                var aa = JsonConvert.DeserializeObject<List<Mod>>(a, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore, ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                foreach (var aaa in aa) {
+                    if (aaa != null) {
+                        aaa.Type = aaa.Type.Contains("dll") ? "Melon Mod" : aaa.Type.Contains("inferno") ? "Inferno Mod" : "BTD 6 Mod";
+                        Storage.ModsList.Add(aaa);
+                    }
+                }
+            }
+        }
+
         public void RefreshDownloadsList()
         {
             stackPanelDownload.Children.Clear();
             try {
-                WebDownloader.IfBlankSet();
-                foreach (var a in WebDownloader.GetAllData()) {
-                    var aa = JsonConvert.DeserializeObject<List<Mod>>(a, new JsonSerializerSettings{DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore, ReferenceLoopHandling = ReferenceLoopHandling.Ignore});
-                    foreach (var aaa in aa) if (aaa != null) Storage.ModsList.Add(aaa);
-                }
+                ParseDownloadsList();
             } catch (Exception e) {
                 MessageBox.Show($"Error! {e.GetType().FullName}", "Clearing cached repos");
                 WebDownloader.Repos = new();
-                WebDownloader.IfBlankSet();
-                foreach (var a in WebDownloader.GetAllData()) {
-                    var aa = JsonConvert.DeserializeObject<List<Mod>>(a, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore, ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
-                    foreach (var aaa in aa) if (aaa != null) Storage.ModsList.Add(aaa);
-                }
+                ParseDownloadsList();
             }
             for (var i = 0; i < Storage.ModsList.Count; i++)
             {
