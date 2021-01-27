@@ -6,7 +6,9 @@
              xmlns:local="clr-namespace:Inferno_Mod_Manager.Controller"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Name="grid" HorizontalAlignment="Stretch">
+    <Expander Grid.Row="0" HorizontalAlignment="Stretch" Background="Transparent" ExpandDirection="Down" VerticalContentAlignment="Top" HorizontalContentAlignment="Stretch" IsExpanded="False" Style="{DynamicResource ModPanelExpander}">
+        <Expander.Header>
+            <Grid Name="grid" HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -14,8 +16,20 @@
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
         <Button Content="Download" HorizontalAlignment="Left" Margin="10,5,40,0" VerticalAlignment="Top" Width="100" Height="30" Click="Button_Click" FontFamily="Segoe UI Semibold" FontWeight="ExtraLight" Foreground="White"/>
-            <Image Name="Image" HorizontalAlignment="Left" VerticalAlignment="Top" Width="35" Height="35" Margin="115,1,0,1"/>
-        <TextBlock  Name="name" Text="{Binding Name}"  VerticalAlignment="Top" Grid.Column="1" Margin="2,8,0,0" Foreground="White"/>
-        <!--<Label Content="{Binding Version}" VerticalAlignment="Top" Grid.Column="2" Margin="5,5,0,0"/>-->
-    </Grid>
+        <Image Name="Image" HorizontalAlignment="Left" VerticalAlignment="Top" Width="35" Height="35" Grid.Column="1" Grid.Row="0" Margin="0,1,0,0" Grid.RowSpan="2"/>
+        <TextBlock Name="textBlock" Text="{Binding Name}" Grid.Column="1" Grid.Row="0" Margin="50,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Grid.RowSpan="2"/>
+        <Label Content="{Binding Type}" Grid.Column="2" Grid.Row="0" Margin="5,5,0,-0.2" Foreground="White" Grid.RowSpan="2"/>
+            </Grid>
+        </Expander.Header>
+        <Grid HorizontalAlignment="Stretch" Margin="5,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Foreground="White" Text="{Binding Description}" TextWrapping="Wrap" Margin="5,0,5,0"/>
+            <TextBlock Grid.Column="1" Foreground="White" Text="{Binding Author}" Margin="5,0,5,0"/>
+            <TextBlock Grid.Column="2" Foreground="White" Text="{Binding Version}" Margin="5,0,5,0"/>
+        </Grid>
+    </Expander>
 </UserControl>

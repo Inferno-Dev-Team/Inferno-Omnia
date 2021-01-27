@@ -23,18 +23,12 @@ namespace Inferno_Mod_Manager.Controller
         {
             InitializeComponent();
             DataContext = mdata;
-            var toolTip = new ToolTip()
-            {
-                Content = mdata.Description
-            };
-            name.ToolTip = toolTip;
         }
         public DownloadPanel(Mod mod)
         {
             InitializeComponent();
             DataContext = mod;
             mdata = mod;
-            name.ToolTip = new ToolTip() { Content = mod.Description + "\n\tBy: " + mod.Author + "\n\tv" + mod.Version };
 
             if (mod.PNGUrl != null && mod.PNGUrl != "" && mod.PNGUrl != "nothingYet")
             {
@@ -52,8 +46,7 @@ namespace Inferno_Mod_Manager.Controller
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
-            var m = ((button.Parent as Grid).Parent as DownloadPanel).mdata;
+            var m = mdata;
 
             var web = new WebClient();
             web.Headers.Add("user-agent", "Inferno Omnia");

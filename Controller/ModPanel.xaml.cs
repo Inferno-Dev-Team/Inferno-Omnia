@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,10 +25,8 @@ namespace Inferno_Mod_Manager.Controller
             InitializeComponent();
             DataContext = m;
             mdata = m;
-            if (m.Description != null && m.Description != "")
-                textBlock.ToolTip = new ToolTip() { Content = m.Description + "\n\tBy: " + m.Author + "\n\tv" + m.Version };
 
-            if (m.PNGUrl != null && m.PNGUrl != "" && m.PNGUrl != "nothingYet")
+            if (!string.IsNullOrWhiteSpace(m.PNGUrl) && m.PNGUrl != "nothingYet")
             {
                 var data = new WebClient().DownloadData(m.PNGUrl);
                 var bitmap = new BitmapImage();
@@ -42,8 +41,7 @@ namespace Inferno_Mod_Manager.Controller
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
-            var button = sender as Button;
-            var m = ((button.Parent as Grid).Parent as ModPanel).mdata;
+            var m = mdata;
 
             ModManifest.Instance -= ModManifest.Instance ^ m.Name;
             File.Delete(m.CanonicalLocation);
@@ -53,8 +51,7 @@ namespace Inferno_Mod_Manager.Controller
 
         private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
-            var checkBox = sender as ToggleSwitch;
-            var m = ((checkBox.Parent as Grid).Parent as ModPanel).mdata;
+            var m = mdata;
             if (m.Enabled)
             {
                 File.Move(m.CanonicalLocation, m.CanonicalLocation.Replace(@"\Disabled", ""));
