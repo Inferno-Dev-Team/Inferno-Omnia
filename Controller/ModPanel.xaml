@@ -9,7 +9,7 @@
              ui:Design.RequestedTheme="Dark"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Expander Grid.Row="0" HorizontalAlignment="Stretch" Background="Transparent" ExpandDirection="Down" VerticalContentAlignment="Top" HorizontalContentAlignment="Stretch" IsExpanded="False" Style="{DynamicResource ModPanelExpander}">
+    <Expander Name="MExpander" Grid.Row="0" HorizontalAlignment="Stretch" Background="Transparent" ExpandDirection="Down" VerticalContentAlignment="Top" HorizontalContentAlignment="Stretch" IsExpanded="False" Style="{DynamicResource ModPanelExpander}">
         <Expander.Header>
             <Grid Name="grid" HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
@@ -37,7 +37,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Foreground="White" Text="{Binding Description}" TextWrapping="Wrap" Margin="5,0,5,0"/>
             <TextBlock Grid.Column="1" Foreground="White" Text="{Binding Author}" Margin="5,0,5,0"/>
-            <TextBlock Grid.Column="2" Foreground="White" Text="{Binding Version}" Margin="5,0,5,0"/>
+            <TextBlock Name="VerTextBlck" Grid.Column="2" Foreground="White" Text="{Binding Version}" Margin="5,0,5,0"/>
         </Grid>
     </Expander>
 </UserControl>

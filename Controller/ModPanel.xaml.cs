@@ -38,6 +38,11 @@ namespace Inferno_Mod_Manager.Controller
 
                 Image.Source = bitmap;
             }
+
+            if (string.IsNullOrWhiteSpace(m.Description)) {
+                VerTextBlck.Text = string.Empty;
+                MExpander.Content = null;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
