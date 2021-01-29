@@ -21,10 +21,7 @@ namespace Inferno_Mod_Manager.Controller {
         }
 
         public static ModManifest operator -(ModManifest mm, Mod m) {
-            if (!File.Exists(Storage.mod))
-                return mm;
-
-            if (m == null || m == TemplateMod)
+            if (!File.Exists(Storage.mod) || m == null || m == TemplateMod)
                 return mm;
 
             var mods = mm*mm.GetType();
@@ -43,9 +40,7 @@ namespace Inferno_Mod_Manager.Controller {
             var mods = mm*mm.GetType();
             for (var i = 0; i < mods.Count; i++)
                 if (mods[i].Name.ToLower().Equals(s.ToLower()))
-                {
                     return mods[i];
-                }
 
             return TemplateMod;
         }

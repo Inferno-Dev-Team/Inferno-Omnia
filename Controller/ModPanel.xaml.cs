@@ -13,7 +13,7 @@ namespace Inferno_Mod_Manager.Controller
     /// </summary>
     public partial class ModPanel : UserControl
     {
-        public Mod mdata = new Mod();
+        public Mod mdata = new();
 
         public ModPanel()
         {
