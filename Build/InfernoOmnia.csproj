@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{ACEF4CB1-F82B-3ACB-ADEB-994B4F8D0CC9}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>InfernoOmnia</ProjectName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <OutputPath>Z:\Inferno Omnia\Build\Debug\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <PlatformToolset>v142</PlatformToolset>
+    <AssemblyName>InfernoOmnia</AssemblyName>
+    <StartAction>Program</StartAction>
+    <StartProgram>Z:\Inferno Omnia\Build\Debug\InfernoOmnia.exe</StartProgram>
+    <DebugType>full</DebugType>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <Optimize>false</Optimize>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <OutputPath>Z:\Inferno Omnia\Build\Release\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <PlatformToolset>v142</PlatformToolset>
+    <AssemblyName>InfernoOmnia</AssemblyName>
+    <StartAction>Program</StartAction>
+    <StartProgram>Z:\Inferno Omnia\Build\Release\InfernoOmnia.exe</StartProgram>
+    <DebugType>none</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>queue</ErrorReport>
+    <Optimize>true</Optimize>
+    <WarningLevel>1</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <OutputPath>Z:\Inferno Omnia\Build\MinSizeRel\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <PlatformToolset>v142</PlatformToolset>
+    <AssemblyName>InfernoOmnia</AssemblyName>
+    <StartAction>Program</StartAction>
+    <StartProgram>Z:\Inferno Omnia\Build\MinSizeRel\InfernoOmnia.exe</StartProgram>
+    <DebugType>none</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <OutputPath>Z:\Inferno Omnia\Build\RelWithDebInfo\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <PlatformToolset>v142</PlatformToolset>
+    <AssemblyName>InfernoOmnia</AssemblyName>
+    <StartAction>Program</StartAction>
+    <StartProgram>Z:\Inferno Omnia\Build\RelWithDebInfo\InfernoOmnia.exe</StartProgram>
+    <DebugType>full</DebugType>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.CSharp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.CSharp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemGroup>
+    <None Include="Z:\Inferno Omnia\CMakeLists.txt">
+      <Link>CMakeLists.txt</Link>
+    </None>
+  </ItemGroup>
+  <Target Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"
+    Name="CustomCommand_Debug_8bf51c15f1b5bd8a4d774712e0b2657d"
+    Inputs="Z:/Inferno Omnia/CMakeLists.txt;Z:\Inferno Omnia\Build\CMakeFiles\3.19.4\CMakeCSharpCompiler.cmake;Z:\Inferno Omnia\Build\CMakeFiles\3.19.4\CMakeSystem.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeCSharpInformation.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeGenericSystem.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeInitializeConfigs.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeSystemSpecificInformation.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeSystemSpecificInitialize.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CSharpUtilities.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\Platform\Windows.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\Platform\WindowsPaths.cmake"
+    Outputs="Z:\Inferno Omnia\Build\CMakeFiles\generate.stamp">
+    <Exec Command="echo Building Custom Rule Z:/Inferno Omnia/CMakeLists.txt" />
+    <Exec Command="setlocal&#10;&quot;Z:\Program Files\CMake\bin\cmake.exe&quot; &quot;-SZ:/Inferno Omnia&quot; &quot;-BZ:/Inferno Omnia/Build&quot; --check-stamp-file &quot;Z:/Inferno Omnia/Build/CMakeFiles/generate.stamp&quot;&#10;if %errorlevel% neq 0 goto :cmEnd&#10;:cmEnd&#10;endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone&#10;:cmErrorLevel&#10;exit /b %1&#10;:cmDone&#10;if %errorlevel% neq 0 goto :VCEnd" />
+  </Target>
+  <Target Condition="'$(Configuration)|$(Platform)'=='Release|x64'"
+    Name="CustomCommand_Release_8bf51c15f1b5bd8a4d774712e0b2657d"
+    Inputs="Z:/Inferno Omnia/CMakeLists.txt;Z:\Inferno Omnia\Build\CMakeFiles\3.19.4\CMakeCSharpCompiler.cmake;Z:\Inferno Omnia\Build\CMakeFiles\3.19.4\CMakeSystem.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeCSharpInformation.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeGenericSystem.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeInitializeConfigs.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeSystemSpecificInformation.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeSystemSpecificInitialize.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CSharpUtilities.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\Platform\Windows.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\Platform\WindowsPaths.cmake"
+    Outputs="Z:\Inferno Omnia\Build\CMakeFiles\generate.stamp">
+    <Exec Command="echo Building Custom Rule Z:/Inferno Omnia/CMakeLists.txt" />
+    <Exec Command="setlocal&#10;&quot;Z:\Program Files\CMake\bin\cmake.exe&quot; &quot;-SZ:/Inferno Omnia&quot; &quot;-BZ:/Inferno Omnia/Build&quot; --check-stamp-file &quot;Z:/Inferno Omnia/Build/CMakeFiles/generate.stamp&quot;&#10;if %errorlevel% neq 0 goto :cmEnd&#10;:cmEnd&#10;endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone&#10;:cmErrorLevel&#10;exit /b %1&#10;:cmDone&#10;if %errorlevel% neq 0 goto :VCEnd" />
+  </Target>
+  <Target Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'"
+    Name="CustomCommand_MinSizeRel_8bf51c15f1b5bd8a4d774712e0b2657d"
+    Inputs="Z:/Inferno Omnia/CMakeLists.txt;Z:\Inferno Omnia\Build\CMakeFiles\3.19.4\CMakeCSharpCompiler.cmake;Z:\Inferno Omnia\Build\CMakeFiles\3.19.4\CMakeSystem.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeCSharpInformation.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeGenericSystem.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeInitializeConfigs.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeSystemSpecificInformation.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeSystemSpecificInitialize.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CSharpUtilities.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\Platform\Windows.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\Platform\WindowsPaths.cmake"
+    Outputs="Z:\Inferno Omnia\Build\CMakeFiles\generate.stamp">
+    <Exec Command="echo Building Custom Rule Z:/Inferno Omnia/CMakeLists.txt" />
+    <Exec Command="setlocal&#10;&quot;Z:\Program Files\CMake\bin\cmake.exe&quot; &quot;-SZ:/Inferno Omnia&quot; &quot;-BZ:/Inferno Omnia/Build&quot; --check-stamp-file &quot;Z:/Inferno Omnia/Build/CMakeFiles/generate.stamp&quot;&#10;if %errorlevel% neq 0 goto :cmEnd&#10;:cmEnd&#10;endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone&#10;:cmErrorLevel&#10;exit /b %1&#10;:cmDone&#10;if %errorlevel% neq 0 goto :VCEnd" />
+  </Target>
+  <Target Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'"
+    Name="CustomCommand_RelWithDebInfo_8bf51c15f1b5bd8a4d774712e0b2657d"
+    Inputs="Z:/Inferno Omnia/CMakeLists.txt;Z:\Inferno Omnia\Build\CMakeFiles\3.19.4\CMakeCSharpCompiler.cmake;Z:\Inferno Omnia\Build\CMakeFiles\3.19.4\CMakeSystem.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeCSharpInformation.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeGenericSystem.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeInitializeConfigs.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeSystemSpecificInformation.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CMakeSystemSpecificInitialize.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\CSharpUtilities.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\Platform\Windows.cmake;Z:\Program Files\CMake\share\cmake-3.19\Modules\Platform\WindowsPaths.cmake"
+    Outputs="Z:\Inferno Omnia\Build\CMakeFiles\generate.stamp">
+    <Exec Command="echo Building Custom Rule Z:/Inferno Omnia/CMakeLists.txt" />
+    <Exec Command="setlocal&#10;&quot;Z:\Program Files\CMake\bin\cmake.exe&quot; &quot;-SZ:/Inferno Omnia&quot; &quot;-BZ:/Inferno Omnia/Build&quot; --check-stamp-file &quot;Z:/Inferno Omnia/Build/CMakeFiles/generate.stamp&quot;&#10;if %errorlevel% neq 0 goto :cmEnd&#10;:cmEnd&#10;endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone&#10;:cmErrorLevel&#10;exit /b %1&#10;:cmDone&#10;if %errorlevel% neq 0 goto :VCEnd" />
+  </Target>
+  <ItemGroup>
+    <None Include="Z:\Inferno Omnia\App.config">
+      <Link>App.config</Link>
+    </None>
+    <Compile Include="Z:\Inferno Omnia\App.xaml.cs">
+      <Link>App.xaml.cs</Link>
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\MainWindow.xaml.cs">
+      <Link>MainWindow.xaml.cs</Link>
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\ProgramLauncher.cs">
+      <Link>ProgramLauncher.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\AchievementPanel.xaml.cs">
+      <Link>Controller\AchievementPanel.xaml.cs</Link>
+      <DependentUpon>AchievementPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\DownloadPanel.xaml.cs">
+      <Link>Controller\DownloadPanel.xaml.cs</Link>
+      <DependentUpon>DownloadPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\Game.cs">
+      <Link>Controller\Game.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\InfernoChecker.cs">
+      <Link>Controller\InfernoChecker.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\InputDialogWindow.xaml.cs">
+      <Link>Controller\InputDialogWindow.xaml.cs</Link>
+      <DependentUpon>InputDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\Mod.cs">
+      <Link>Controller\Mod.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\ModManifest.cs">
+      <Link>Controller\ModManifest.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\ModPanel.xaml.cs">
+      <Link>Controller\ModPanel.xaml.cs</Link>
+      <DependentUpon>ModPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\OneAnswerInputDialogWindow.xaml.cs">
+      <Link>Controller\OneAnswerInputDialogWindow.xaml.cs</Link>
+      <DependentUpon>OneAnswerInputDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\ProfilePanel.xaml.cs">
+      <Link>Controller\ProfilePanel.xaml.cs</Link>
+      <DependentUpon>ProfilePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\Rand.cs">
+      <Link>Controller\Rand.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\SupportedGames.cs">
+      <Link>Controller\SupportedGames.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Controller\WebDownloader.cs">
+      <Link>Controller\WebDownloader.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\InfernoMods\FileAssociation.cs">
+      <Link>InfernoMods\FileAssociation.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\MelonMods\MelonHandler.cs">
+      <Link>MelonMods\MelonHandler.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Utils\Extensions.cs">
+      <Link>Utils\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Utils\ProcessHelpers.cs">
+      <Link>Utils\ProcessHelpers.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Utils\RGBASource.cs">
+      <Link>Utils\RGBASource.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Utils\Settings.cs">
+      <Link>Utils\Settings.cs</Link>
+      <ObjectFileName>$(IntDir)/Utils/Settings.cs</ObjectFileName>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Utils\Storage.cs">
+      <Link>Utils\Storage.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Properties\Resources.Designer.cs">
+      <Link>Properties\Resources.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Properties\Settings.Designer.cs">
+      <Link>Properties\Settings.Designer.cs</Link>
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Z:\Inferno Omnia\Properties\Settings.cs">
+      <Link>Properties\Settings.cs</Link>
+      <ObjectFileName>$(IntDir)/Properties/Settings.cs</ObjectFileName>
+    </Compile>
+    <None Include="Z:\Inferno Omnia\Properties\Settings.settings">
+      <Link>Properties\Settings.settings</Link>
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Core">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Data">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Xaml">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Xml">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="DiscordRPC">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="DotNetZip">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks.Win64">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="FluentWPF">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="MelonLoader.ModHandler">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="ModernWpf.Controls">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="ModernWpf">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Z:\Inferno Omnia\Properties\Resources.resx">
+      <Link>Properties\Resources.resx</Link>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Z:\Inferno Omnia\App.xaml">
+      <Link>App.xaml</Link>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Z:\Inferno Omnia\MainWindow.xaml">
+      <Link>MainWindow.xaml</Link>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Z:\Inferno Omnia\Controller\AchievementPanel.xaml">
+      <Link>Controller\AchievementPanel.xaml</Link>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Z:\Inferno Omnia\Controller\DownloadPanel.xaml">
+      <Link>Controller\DownloadPanel.xaml</Link>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Z:\Inferno Omnia\Controller\InputDialogWindow.xaml">
+      <Link>Controller\InputDialogWindow.xaml</Link>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Z:\Inferno Omnia\Controller\ModPanel.xaml">
+      <Link>Controller\ModPanel.xaml</Link>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Z:\Inferno Omnia\Controller\OneAnswerInputDialogWindow.xaml">
+      <Link>Controller\OneAnswerInputDialogWindow.xaml</Link>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Z:\Inferno Omnia\Controller\ProfilePanel.xaml">
+      <Link>Controller\ProfilePanel.xaml</Link>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Z:\Inferno Omnia\Build\ZERO_CHECK.vcxproj">
+      <Project>{B2B7FB33-1198-34C6-BC64-9E5CFDE5354A}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'MinSizeRel'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'RelWithDebInfo'">
+  </PropertyGroup>
+  <PropertyGroup>
+    <BuildDependsOn>
+      CustomCommand_Debug_8bf51c15f1b5bd8a4d774712e0b2657d;
+      CustomCommand_MinSizeRel_8bf51c15f1b5bd8a4d774712e0b2657d;
+      CustomCommand_RelWithDebInfo_8bf51c15f1b5bd8a4d774712e0b2657d;
+      CustomCommand_Release_8bf51c15f1b5bd8a4d774712e0b2657d;
+      $(BuildDependsOn)
+</BuildDependsOn>
+  </PropertyGroup>
+</Project>
