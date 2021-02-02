@@ -17,6 +17,6 @@ namespace Inferno_Mod_Manager.Utils {
             }
         }
 
-        public void rewriteFile() => File.WriteAllText(Storage.usr, JsonConvert.SerializeObject(this, Formatting.Indented));
+        public void rewriteFile() => File.WriteAllText(Storage.UserCache, JsonConvert.SerializeObject(this, Formatting.Indented));
     }
 }

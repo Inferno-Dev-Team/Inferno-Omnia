@@ -46,7 +46,7 @@
                         <ColumnDefinition Width="174*"/>
                     </Grid.ColumnDefinitions>
                     <ScrollViewer Height="Auto" Margin="0,50,0,0" Grid.ColumnSpan="2">
-                        <StackPanel x:Name="stackPanel" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto"/>
+                        <StackPanel x:Name="ModList" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto"/>
                     </ScrollViewer>
                     <Label VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Margin="63,16,0,0" Content="Launch" Width="87" Grid.ColumnSpan="2" Grid.Column="0" Foreground="White" />
                     <Label VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Margin="193,16,0,0" Content="Launch (No Mods)" Width="115" Grid.ColumnSpan="2" Foreground="White" />
@@ -73,7 +73,7 @@
                         <Image Source="Icons/AddRepo.png" RenderOptions.BitmapScalingMode="Fant" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="128"/>
                     </Button>
                     <ScrollViewer Height="Auto" Margin="0,50,0,0" Grid.ColumnSpan="2">
-                        <StackPanel x:Name="stackPanelDownload" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto"/>
+                        <StackPanel x:Name="DownloadList" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto"/>
                     </ScrollViewer>
                     <ProgressBar x:Name="progressBar" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,2,0,0" Height="30" Width="150" Grid.Column="1"/>
                 </Grid>

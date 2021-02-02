@@ -12,16 +12,16 @@ namespace Inferno_Mod_Manager.Controller {
         public static Mod TemplateMod = new();
 
         public static ModManifest operator +(ModManifest mm, Mod m) {
-            if (!File.Exists(Storage.mod))
-                File.Create(Storage.mod).Close();
+            if (!File.Exists(Storage.Mod))
+                File.Create(Storage.Mod).Close();
             var mods = mm*mm.GetType();
             mods.Add(m);
-            File.WriteAllText(Storage.mod, JsonConvert.SerializeObject(mods, Formatting.Indented));
+            File.WriteAllText(Storage.Mod, JsonConvert.SerializeObject(mods, Formatting.Indented));
             return mm;
         }
 
         public static ModManifest operator -(ModManifest mm, Mod m) {
-            if (!File.Exists(Storage.mod) || m == null || m == TemplateMod)
+            if (!File.Exists(Storage.Mod) || m == null || m == TemplateMod)
                 return mm;
 
             var mods = mm*mm.GetType();
@@ -29,12 +29,12 @@ namespace Inferno_Mod_Manager.Controller {
             if (!mods.Remove(usableMod))
                 MessageBox.Show("Couldn't Fully Remove Mod!");
 
-            File.WriteAllText(Storage.mod, JsonConvert.SerializeObject(mods, Formatting.Indented));
+            File.WriteAllText(Storage.Mod, JsonConvert.SerializeObject(mods, Formatting.Indented));
             return mm;
         }
 
         public static Mod operator ^(ModManifest mm, string s) {
-            if (!File.Exists(Storage.mod))
+            if (!File.Exists(Storage.Mod))
                 return TemplateMod;
 
             var mods = mm*mm.GetType();
@@ -46,7 +46,7 @@ namespace Inferno_Mod_Manager.Controller {
         }
 
         public static List<Mod> operator *(ModManifest mm, Type type) {
-            var mods = JsonConvert.DeserializeObject<List<Mod>>(File.ReadAllText(Storage.mod));
+            var mods = JsonConvert.DeserializeObject<List<Mod>>(File.ReadAllText(Storage.Mod));
 
             if (mods == null)
                 mods = new();

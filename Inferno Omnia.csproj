@@ -180,7 +180,6 @@
     <Compile Include="InfernoMods\FileAssociation.cs" />
     <Compile Include="MelonMods\MelonHandler.cs" />
     <Compile Include="ProgramLauncher.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\ProcessHelpers.cs" />
     <Compile Include="Utils\RGBASource.cs" />

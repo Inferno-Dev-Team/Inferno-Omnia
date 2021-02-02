@@ -10,10 +10,8 @@ using System.Windows;
 using Inferno_Mod_Manager.Controller;
 using Inferno_Mod_Manager.Properties;
 
-namespace Inferno_Mod_Manager
-{
-    class ProgramLauncher
-    {
+namespace Inferno_Mod_Manager {
+    class ProgramLauncher {
         [STAThread]
         public static void Main(string[] args) {
             MainWindow.SetupSettings();
@@ -25,46 +23,32 @@ namespace Inferno_Mod_Manager
             }
 
             var mtr = new List<Mod>();
-            foreach (var a in (ModManifest.Instance * typeof(Mod)))
+            foreach (var a in ModManifest.Instance * typeof(Mod))
                 if (!File.Exists((ModManifest.Instance ^ a.Name).CanonicalLocation))
                     mtr.Add(a);
 
             foreach (var remove in mtr) ModManifest.Instance -= remove;
 
-            try {
-                SteamClient.Init(960090);
-                Storage.InstallDir = SteamApps.AppInstallDir();
-                MelonHandler.EnsureMelonInstalled();
-                FileAssociations.EnsureAssociationsSet();
-            }
-            catch (Exception e) {
-                MessageBox.Show("ERROR 0x3ef93 PLEASE REPORT IN THE DISCORD");
-            }
-
-            _ = Directory.CreateDirectory(Storage.InstallDir + @"\Mods\Inferno");
-            _ = Directory.CreateDirectory(Storage.InstallDir + @"\Mods\Inferno\Disabled");
-            _ = Directory.CreateDirectory(Storage.InstallDir + @"\Mods");
-            _ = Directory.CreateDirectory(Storage.InstallDir + @"\Mods\Disabled");
-            _ = Directory.CreateDirectory(Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\"));
             if (args.Length != 0)
                 foreach (var file in args)
-                    if (!file.Contains(@"\Mods\Inferno")) {
-                        if (File.Exists(Storage.InstallDir + @"\Mods\Inferno\" + Path.GetFileName(file)))
-                            File.Delete(Storage.InstallDir + @"\Mods\Inferno\" + Path.GetFileName(file));
-                        File.Move(file, Storage.InstallDir + @"\Mods\Inferno\" + Path.GetFileName(file));
+                    if (!file.Contains(ModDir.Inferno.Dir)) {
+                        string newFile = ModDir.Inferno.Dir + Path.GetFileName(file);
+                        if (File.Exists(newFile))
+                            File.Delete(newFile);
+                        File.Move(file, newFile);
                     }
 
-            if (Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno").Combine(Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno\Disabled")).Length > 0) {
+            if (Storage.GetModFiles(ModDir.Inferno, ModDir.DisabledInferno).Length > 0) {
                 var flag = false;
-                foreach (var file in Directory.GetFiles(Storage.InstallDir + @"\Mods", "*.dll").Combine(Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno\Disabled"))) {
+                foreach (var file in Storage.GetModFiles(ModDir.Mods, ModDir.DisabledMods)) {
                     MelonHandler.GetMelonAttrib(file, out var att);
                     if (att != null)
                         flag |= att.Name.Equals("Inferno API Injector");
                 }
                 if (!flag)
-                    File.Create(Storage.InstallDir + @"\Mods\Inferno API Injector.dll").Write(Resources.Inferno_API_Injector, 0, Resources.Inferno_API_Injector.Length);
+                    File.Create(ModDir.Mods + @"\Inferno API Injector.dll").Write(Resources.Inferno_API_Injector, 0, Resources.Inferno_API_Injector.Length);
             }
-            var app = new App {ShutdownMode = ShutdownMode.OnMainWindowClose};
+            var app = new App { ShutdownMode = ShutdownMode.OnMainWindowClose };
             app.InitializeComponent();
             app.Run();
         }

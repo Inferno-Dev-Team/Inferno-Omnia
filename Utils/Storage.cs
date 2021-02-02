@@ -1,16 +1,25 @@
 ﻿using Inferno_Mod_Manager.Controller;
+using Inferno_Mod_Manager.InfernoMods;
+using Inferno_Mod_Manager.MelonMods;
+using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using Newtonsoft.Json;
+using System.Windows;
 
-namespace Inferno_Mod_Manager.Utils
-{
-    internal class Storage
-    {
-        public static string InstallDir { get; set; }
+namespace Inferno_Mod_Manager.Utils {
+    internal class Storage {
+        public static string[] GetModFiles(ModDir dir, params ModDir[] additional) {
+            if (dir.Exists) {
+                string[] modFiles = Directory.GetFiles(dir.Dir, dir.Pattern);
+                foreach (ModDir addition in additional)
+                    modFiles = modFiles.Combine(Directory.GetFiles(addition.Dir, addition.Pattern));
+                return modFiles;
+            }
+            return new string[0];
+        }
 
         private static List<Mod> _modsList = null;
         public static List<Mod> ModsList {
@@ -31,7 +40,7 @@ namespace Inferno_Mod_Manager.Utils
             }
             set => _settings = value;
         }
-
+        //what is all this? v
         public static readonly double[] versions = ("7.1 7.2 8.1 9.0 9.1 10.0 10.1 10.2 11.0 11.1 11.2 12.0 12.1 12.2 12.3 13.0 13.1 " +
                                                     "14.0 14.1 14.2 15.0 15.1 15.2 16.0 16.1 16.2 17.0 17.1 18.0 18.1 19.0 19.1 19.2").Split(' ').ToDoubleArray();
         private static readonly string[] manifests = ("2054082021331818529 4596146723057622261 8467375375836982228 5602649970690083401 " +
@@ -50,13 +59,62 @@ namespace Inferno_Mod_Manager.Utils
                                                     "[4430074,4430489] [4435322,4435737] [4434474,4434889]").Split(' ');
         public static readonly Dictionary<double, string> manifestDict = versions.Zip(manifests, (ver, man) => new { ver, man }).ToDictionary(item => item.ver, item => item.man);
         public static readonly Dictionary<double, string> offsetDict = versions.Zip(offsets, (ver, off) => new { ver, off }).ToDictionary(item => item.ver, item => item.off);
-        public static readonly string repo = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\repo.json");
-        public static readonly string mod = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\mod.json");
-        public static readonly string usr = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\userCache.json");
         public static WebClient client = new();
+        public static string Repo { get => StorageDir.AppData.Dir + @"\repo.json"; }
+        public static string Mod { get => StorageDir.AppData.Dir + @"\mod.json"; }
+        public static string UserCache { get => StorageDir.AppData.Dir + @"\userCache.json"; }
+        public static string App { get => StorageDir.Install.Dir + @"\BloonsTD6.exe"; }
+        public static string Temp { get => StorageDir.Install.Dir + @"\tmp"; }
+        public static string Version { get => StorageDir.Install.Dir + @"\version.dll"; }
 
         static Storage() {
             client.Headers.Add("user-agent", "Inferno Omnia");
+
+            StorageDir.AppData.Create();
+            ModDir.Mods.Create();
+            ModDir.DisabledMods.Create();
+            ModDir.Inferno.Create();
+            ModDir.DisabledInferno.Create();
         }
+    }
+
+    //Pseudo enum
+    public class StorageDir {
+        static StorageDir() {
+            try {
+                SteamClient.Init(960090);
+                Install = new StorageDir(SteamApps.AppInstallDir(), "*.*");
+                MelonHandler.EnsureMelonInstalled();
+                FileAssociations.EnsureAssociationsSet();
+            } catch (Exception) {
+                MessageBox.Show("ERROR 0x3ef93 PLEASE REPORT IN THE DISCORD");
+            }
+        }
+        protected StorageDir(string dir, string pattern) {
+            Dir = dir;
+            Pattern = pattern;
+        }
+        public string Dir { get; }
+        public string Pattern { get; }
+
+        public bool Exists { get => Directory.Exists(Dir); }
+
+        public void Create() => Directory.CreateDirectory(Dir);
+
+        private static StorageDir GetInstallDir() {
+            StorageDir installDir = null;
+            return installDir;
+        }
+
+        public static StorageDir Install { get; }
+        public static StorageDir AppData { get; } = new StorageDir(Environment.ExpandEnvironmentVariables(@"%AppData%\InfernoOmnia\"), "*.*");
+    }
+    public class ModDir : StorageDir {
+        private ModDir(string dir, string pattern) : base(dir, pattern) { }
+
+        public static ModDir Mods { get; } = new ModDir(Install.Dir + @"\Mods", "*.dll");
+        public static ModDir DisabledMods { get; } = new ModDir(Install.Dir + @"\Mods\Disabled", "*.dll");
+        public static ModDir Inferno { get; } = new ModDir(Install.Dir + @"\Mods\Inferno", "*.inferno");
+        public static ModDir DisabledInferno { get; } = new ModDir(Install.Dir + @"\Mods\Inferno\Disabled", "*.inferno");
     }
 }
