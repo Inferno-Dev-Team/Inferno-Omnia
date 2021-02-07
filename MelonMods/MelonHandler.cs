@@ -33,7 +33,7 @@ namespace Inferno_Mod_Manager.MelonMods {
                     var downloadLink = dyn[0].assets[3].browser_download_url.ToString();
                     try {
                         Storage.client.DownloadFile(downloadLink, Storage.Temp);
-                        System.IO.Compression.ZipFile.ExtractToDirectory(Storage.Temp, StorageDir.Install.Dir);
+                        System.IO.Compression.ZipFile.ExtractToDirectory(Storage.Temp, Storage.Dir.Install.Path);
                         File.Delete(Storage.Temp);
                         MessageBox.Show("Finished Downloading MelonLoader!");
                     } catch (Exception e) {

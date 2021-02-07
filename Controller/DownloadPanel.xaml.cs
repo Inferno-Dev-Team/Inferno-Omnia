@@ -64,7 +64,7 @@ namespace Inferno_Mod_Manager.Controller
                 MainWindow.Instance.progressBar.Value = 0;
             };
 
-            m.CanonicalLocation = ModDir.Mods.Dir + m.Name + m.Type;
+            m.CanonicalLocation = Storage.ModDir.Mods.Path + m.Name + m.Type;
             web.DownloadFileAsync(new(m.DownloadUrl), m.CanonicalLocation);
         }
 

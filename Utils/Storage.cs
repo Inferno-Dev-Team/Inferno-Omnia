@@ -4,6 +4,7 @@ using Inferno_Mod_Manager.MelonMods;
 using Steamworks;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -13,9 +14,9 @@ namespace Inferno_Mod_Manager.Utils {
     internal class Storage {
         public static string[] GetModFiles(ModDir dir, params ModDir[] additional) {
             if (dir.Exists) {
-                string[] modFiles = Directory.GetFiles(dir.Dir, dir.Pattern);
+                string[] modFiles = Directory.GetFiles(dir.Path, dir.Pattern);
                 foreach (ModDir addition in additional)
-                    modFiles = modFiles.Combine(Directory.GetFiles(addition.Dir, addition.Pattern));
+                    modFiles = modFiles.Combine(Directory.GetFiles(addition.Path, addition.Pattern));
                 return modFiles;
             }
             return new string[0];
@@ -60,61 +61,58 @@ namespace Inferno_Mod_Manager.Utils {
         public static readonly Dictionary<double, string> manifestDict = versions.Zip(manifests, (ver, man) => new { ver, man }).ToDictionary(item => item.ver, item => item.man);
         public static readonly Dictionary<double, string> offsetDict = versions.Zip(offsets, (ver, off) => new { ver, off }).ToDictionary(item => item.ver, item => item.off);
         public static WebClient client = new();
-        public static string Repo { get => StorageDir.AppData.Dir + @"\repo.json"; }
-        public static string Mod { get => StorageDir.AppData.Dir + @"\mod.json"; }
-        public static string UserCache { get => StorageDir.AppData.Dir + @"\userCache.json"; }
-        public static string App { get => StorageDir.Install.Dir + @"\BloonsTD6.exe"; }
-        public static string Temp { get => StorageDir.Install.Dir + @"\tmp"; }
-        public static string Version { get => StorageDir.Install.Dir + @"\version.dll"; }
+        public static string Repo { get => Dir.AppData.Path + @"\repo.json"; }
+        public static string Mod { get => Dir.AppData.Path + @"\mod.json"; }
+        public static string UserCache { get => Dir.AppData.Path + @"\userCache.json"; }
+        public static string App { get => Dir.Install.Path + @"\BloonsTD6.exe"; }
+        public static string Temp { get => Dir.Install.Path + @"\tmp"; }
+        public static string Version { get => Dir.Install.Path + @"\version.dll"; }
 
         static Storage() {
             client.Headers.Add("user-agent", "Inferno Omnia");
 
-            StorageDir.AppData.Create();
+            Dir.AppData.Create();
             ModDir.Mods.Create();
             ModDir.DisabledMods.Create();
             ModDir.Inferno.Create();
             ModDir.DisabledInferno.Create();
         }
-    }
 
-    //Pseudo enum
-    public class StorageDir {
-        static StorageDir() {
-            try {
-                SteamClient.Init(960090);
-                Install = new StorageDir(SteamApps.AppInstallDir(), "*.*");
-                MelonHandler.EnsureMelonInstalled();
-                FileAssociations.EnsureAssociationsSet();
-            } catch (Exception) {
-                MessageBox.Show("ERROR 0x3ef93 PLEASE REPORT IN THE DISCORD");
+        //Pseudo enum
+        public class Dir {
+            static Dir() {
+                try {
+                    SteamClient.Init(960090);
+                    Install = new Dir(SteamApps.AppInstallDir(), "*.*");
+                    MelonHandler.EnsureMelonInstalled();
+                    FileAssociations.EnsureAssociationsSet();
+                } catch (Exception e) {
+                    MessageBox.Show($"ERROR \"{e.Message}\" PLEASE REPORT IN THE DISCORD");
+                }
             }
+            protected Dir(string dir, string pattern) {
+                Path = dir;
+                Pattern = pattern;
+            }
+            public string Path { get; }
+            public string Pattern { get; }
+
+            public bool Exists { get => Directory.Exists(Path); }
+
+            public void Create() => Directory.CreateDirectory(Path);
+
+            public static Dir Install { get; }
+            public static Dir AppData { get; } = new Dir(Environment.ExpandEnvironmentVariables(@"%AppData%\InfernoOmnia\"), "*.*");
         }
-        protected StorageDir(string dir, string pattern) {
-            Dir = dir;
-            Pattern = pattern;
+        public class ModDir : Dir {
+            static ModDir() { } //allows for the static stuff to be created in the correct order
+
+            private ModDir(string dir, string pattern) : base(dir, pattern) { }
+
+            public static ModDir Mods { get; } = new ModDir(Install.Path + @"\Mods", "*.dll");
+            public static ModDir DisabledMods { get; } = new ModDir(Install.Path + @"\Mods\Disabled", "*.dll");
+            public static ModDir Inferno { get; } = new ModDir(Install.Path + @"\Mods\Inferno", "*.inferno");
+            public static ModDir DisabledInferno { get; } = new ModDir(Install.Path + @"\Mods\Inferno\Disabled", "*.inferno");
         }
-        public string Dir { get; }
-        public string Pattern { get; }
-
-        public bool Exists { get => Directory.Exists(Dir); }
-
-        public void Create() => Directory.CreateDirectory(Dir);
-
-        private static StorageDir GetInstallDir() {
-            StorageDir installDir = null;
-            return installDir;
-        }
-
-        public static StorageDir Install { get; }
-        public static StorageDir AppData { get; } = new StorageDir(Environment.ExpandEnvironmentVariables(@"%AppData%\InfernoOmnia\"), "*.*");
-    }
-    public class ModDir : StorageDir {
-        private ModDir(string dir, string pattern) : base(dir, pattern) { }
-
-        public static ModDir Mods { get; } = new ModDir(Install.Dir + @"\Mods", "*.dll");
-        public static ModDir DisabledMods { get; } = new ModDir(Install.Dir + @"\Mods\Disabled", "*.dll");
-        public static ModDir Inferno { get; } = new ModDir(Install.Dir + @"\Mods\Inferno", "*.inferno");
-        public static ModDir DisabledInferno { get; } = new ModDir(Install.Dir + @"\Mods\Inferno\Disabled", "*.inferno");
     }
 }

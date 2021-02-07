@@ -31,22 +31,22 @@ namespace Inferno_Mod_Manager {
 
             if (args.Length != 0)
                 foreach (var file in args)
-                    if (!file.Contains(ModDir.Inferno.Dir)) {
-                        string newFile = ModDir.Inferno.Dir + Path.GetFileName(file);
+                    if (!file.Contains(Storage.ModDir.Inferno.Path)) {
+                        string newFile = Storage.ModDir.Inferno.Path + Path.GetFileName(file);
                         if (File.Exists(newFile))
                             File.Delete(newFile);
                         File.Move(file, newFile);
                     }
 
-            if (Storage.GetModFiles(ModDir.Inferno, ModDir.DisabledInferno).Length > 0) {
+            if (Storage.GetModFiles(Storage.ModDir.Inferno, Storage.ModDir.DisabledInferno).Length > 0) {
                 var flag = false;
-                foreach (var file in Storage.GetModFiles(ModDir.Mods, ModDir.DisabledMods)) {
+                foreach (var file in Storage.GetModFiles(Storage.ModDir.Mods, Storage.ModDir.DisabledMods)) {
                     MelonHandler.GetMelonAttrib(file, out var att);
                     if (att != null)
                         flag |= att.Name.Equals("Inferno API Injector");
                 }
                 if (!flag)
-                    File.Create(ModDir.Mods + @"\Inferno API Injector.dll").Write(Resources.Inferno_API_Injector, 0, Resources.Inferno_API_Injector.Length);
+                    File.Create(Storage.ModDir.Mods + @"\Inferno API Injector.dll").Write(Resources.Inferno_API_Injector, 0, Resources.Inferno_API_Injector.Length);
             }
             var app = new App { ShutdownMode = ShutdownMode.OnMainWindowClose };
             app.InitializeComponent();

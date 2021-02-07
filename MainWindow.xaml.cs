@@ -55,7 +55,7 @@ namespace Inferno_Mod_Manager {
 
         public void RefreshModList() {
             ModList.Children.Clear();
-            var modFiles = Storage.GetModFiles(ModDir.Mods, ModDir.Inferno);
+            var modFiles = Storage.GetModFiles(Storage.ModDir.Mods, Storage.ModDir.Inferno);
             for (var i = 0; i < modFiles.Length; i++) {
                 Mod mod;
                 var fvi = FileVersionInfo.GetVersionInfo(modFiles[i]);
@@ -76,7 +76,7 @@ namespace Inferno_Mod_Manager {
                 ModList.Children.Add(new ModPanel(mod));
             }
 
-            var disableModFiles = Storage.GetModFiles(ModDir.DisabledMods, ModDir.DisabledInferno);
+            var disableModFiles = Storage.GetModFiles(Storage.ModDir.DisabledMods, Storage.ModDir.DisabledInferno);
             for (var i = 0; i < disableModFiles.Length; i++) {
                 Mod disabledMod;
                 var fvi = FileVersionInfo.GetVersionInfo(disableModFiles[i]);
@@ -220,7 +220,7 @@ namespace Inferno_Mod_Manager {
                 }
 
                 var dd = new Mod { Name = Name, Author = Author, Description = Description, Type = Path.GetExtension(file), DownloadUrl = "null.com", PNGUrl = PNGUrl, Tags = Tags, Version = Version };
-                File.Copy(file, ModDir.Mods.Dir + Name + Path.GetExtension(file));
+                File.Copy(file, Storage.ModDir.Mods.Path + Name + Path.GetExtension(file));
                 ModManifest.Instance += dd;
                 RefreshModList();
             } catch (Exception a) { MessageBox.Show("Couldn't Add the mod!\n" + a.Message, "ERROR!"); }
