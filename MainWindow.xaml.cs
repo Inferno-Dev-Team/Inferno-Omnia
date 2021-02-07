@@ -41,8 +41,8 @@ namespace Inferno_Mod_Manager {
             RefreshAchievements();
         }
 
-        public Mod MakeNewMod(string path, bool enabled) => new Mod {
-            Name = Path.GetFileNameWithoutExtension(path),
+        public Mod MakeNewMod(string path, bool enabled, string name = "") => new() {
+            Name = name.Equals("") ? Path.GetFileNameWithoutExtension(path) : name,
             Type = Path.GetExtension(path).Contains("dll") ? "Melon Mod" : Path.GetExtension(path).Contains("inferno") ? "Inferno Mod" : "BTD 6 Mod",
             CanonicalLocation = path,
             Enabled = enabled
@@ -102,12 +102,11 @@ namespace Inferno_Mod_Manager {
             WebDownloader.IfBlankSet();
             foreach (var a in WebDownloader.GetAllData()) {
                 var aa = JsonConvert.DeserializeObject<List<Mod>>(a, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore, ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
-                foreach (var aaa in aa) {
+                foreach (var aaa in aa)
                     if (aaa != null) {
                         aaa.Type = aaa.Type.Contains("dll") ? "Melon Mod" : aaa.Type.Contains("inferno") ? "Inferno Mod" : "BTD 6 Mod";
                         Storage.ModsList.Add(aaa);
                     }
-                }
             }
         }
 
@@ -123,7 +122,7 @@ namespace Inferno_Mod_Manager {
             for (var i = 0; i < Storage.ModsList.Count; i++) {
                 var modData = Storage.ModsList[i];
 
-                if ((ModManifest.Instance ^ modData.Name) == ModManifest.TemplateMod) // First part is prolly always gonna be false.
+                if ((ModManifest.Instance ^ modData.Name) == ModManifest.TemplateMod)
                     DownloadList.Children.Add(new DownloadPanel(modData));
             }
         }

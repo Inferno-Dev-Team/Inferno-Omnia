@@ -12,9 +12,9 @@ namespace Inferno_Mod_Manager {
         public static DiscordRpcClient client;
         protected override void OnStartup(StartupEventArgs se)
         {
-            client = new DiscordRpcClient("790509732561551402");
+            client = new("790509732561551402");
             client.Initialize();
-            client.SetPresence(new RichPresence()
+            client.SetPresence(new()
             {
                 Timestamps = Timestamps.Now,
                 Details = "Playing Inferno Omnia",
