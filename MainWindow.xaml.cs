@@ -43,7 +43,7 @@ namespace Inferno_Mod_Manager {
 
         public Mod MakeNewMod(string path, bool enabled, string name = "") => new() {
             Name = name.Equals("") ? Path.GetFileNameWithoutExtension(path) : name,
-            Type = Path.GetExtension(path).Contains("dll") ? "Melon Mod" : Path.GetExtension(path).Contains("inferno") ? "Inferno Mod" : "BTD 6 Mod",
+            Type = Path.GetExtension(path),
             CanonicalLocation = path,
             Enabled = enabled
         };
@@ -103,10 +103,8 @@ namespace Inferno_Mod_Manager {
             foreach (var a in WebDownloader.GetAllData()) {
                 var aa = JsonConvert.DeserializeObject<List<Mod>>(a, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore, ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
                 foreach (var aaa in aa)
-                    if (aaa != null) {
-                        aaa.Type = aaa.Type.Contains("dll") ? "Melon Mod" : aaa.Type.Contains("inferno") ? "Inferno Mod" : "BTD 6 Mod";
+                    if (aaa != null)
                         Storage.ModsList.Add(aaa);
-                    }
             }
         }
 

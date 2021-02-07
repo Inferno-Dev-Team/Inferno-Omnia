@@ -61,12 +61,12 @@ namespace Inferno_Mod_Manager.Utils {
         public static readonly Dictionary<double, string> manifestDict = versions.Zip(manifests, (ver, man) => new { ver, man }).ToDictionary(item => item.ver, item => item.man);
         public static readonly Dictionary<double, string> offsetDict = versions.Zip(offsets, (ver, off) => new { ver, off }).ToDictionary(item => item.ver, item => item.off);
         public static WebClient client = new();
-        public static string Repo { get => Dir.AppData.Path + @"\repo.json"; }
-        public static string Mod { get => Dir.AppData.Path + @"\mod.json"; }
-        public static string UserCache { get => Dir.AppData.Path + @"\userCache.json"; }
-        public static string App { get => Dir.Install.Path + @"\BloonsTD6.exe"; }
-        public static string Temp { get => Dir.Install.Path + @"\tmp"; }
-        public static string Version { get => Dir.Install.Path + @"\version.dll"; }
+        public static string Repo { get => Dir.AppData.Path + "repo.json"; }
+        public static string Mod { get => Dir.AppData.Path + "mod.json"; }
+        public static string UserCache { get => Dir.AppData.Path + "userCache.json"; }
+        public static string App { get => Dir.Install.Path + "BloonsTD6.exe"; }
+        public static string Temp { get => Dir.Install.Path + "tmp"; }
+        public static string Version { get => Dir.Install.Path + "version.dll"; }
 
         static Storage() {
             client.Headers.Add("user-agent", "Inferno Omnia");
@@ -83,7 +83,7 @@ namespace Inferno_Mod_Manager.Utils {
             static Dir() {
                 try {
                     SteamClient.Init(960090);
-                    Install = new Dir(SteamApps.AppInstallDir(), "*.*");
+                    Install = new Dir(SteamApps.AppInstallDir() + '\\', "*.*");
                     MelonHandler.EnsureMelonInstalled();
                     FileAssociations.EnsureAssociationsSet();
                 } catch (Exception e) {
@@ -109,10 +109,10 @@ namespace Inferno_Mod_Manager.Utils {
 
             private ModDir(string dir, string pattern) : base(dir, pattern) { }
 
-            public static ModDir Mods { get; } = new ModDir(Install.Path + @"\Mods", "*.dll");
-            public static ModDir DisabledMods { get; } = new ModDir(Install.Path + @"\Mods\Disabled", "*.dll");
-            public static ModDir Inferno { get; } = new ModDir(Install.Path + @"\Mods\Inferno", "*.inferno");
-            public static ModDir DisabledInferno { get; } = new ModDir(Install.Path + @"\Mods\Inferno\Disabled", "*.inferno");
+            public static ModDir Mods { get; } = new ModDir(Install.Path + @"Mods\", "*.dll");
+            public static ModDir DisabledMods { get; } = new ModDir(Install.Path + @"Mods\Disabled\", "*.dll");
+            public static ModDir Inferno { get; } = new ModDir(Install.Path + @"Mods\Inferno\", "*.inferno");
+            public static ModDir DisabledInferno { get; } = new ModDir(Install.Path + @"Mods\Inferno\Disabled\", "*.inferno");
         }
     }
 }

@@ -56,7 +56,6 @@ namespace Inferno_Mod_Manager.Controller
             };
             web.DownloadFileCompleted += (o, args) =>
             {
-                m.Type = m.Type.Contains("dll") ? "Melon Mod" : (m.Type.Contains("inferno") ? "Inferno Mod" : "BTD 6 Mod");
                 ModManifest.Instance += m;
                 MainWindow.Instance.RefreshDownloadsList();
                 MainWindow.Instance.RefreshModList();

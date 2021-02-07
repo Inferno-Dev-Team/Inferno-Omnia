@@ -3,6 +3,7 @@ using Inferno_Mod_Manager.MelonMods;
 using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.IO;
 
 namespace Inferno_Mod_Manager.Controller
 {
@@ -50,8 +51,13 @@ namespace Inferno_Mod_Manager.Controller
         public string Type
         {
             get => _type;
-            set { _type = value; NotifyPropertyChanged(); }
+            set {
+                _type = value;
+                TypeName = _type.Contains("dll") ? "Melon Mod" : _type.Contains("inferno") ? "Inferno Mod" : "BTD 6 Mod";
+                NotifyPropertyChanged();
+            }
         }
+        public string TypeName { get; private set; }
         [JsonProperty]
         public string Version
         {
