@@ -17,19 +17,23 @@ using System.Windows.Media;
 using System.Security;
 using Inferno_Mod_Manager.MelonMods;
 
-namespace Inferno_Mod_Manager {
+namespace Inferno_Mod_Manager
+{
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window {
+    public partial class MainWindow : Window
+    {
         public static MainWindow Instance;
-        public MainWindow() {
+        public MainWindow()
+        {
             WindowStyle = WindowStyle.None;
             AllowsTransparency = true;
             InitializeComponent();
         }
 
-        private void Window_Initialized(object sender, EventArgs e) {
+        private void Window_Initialized(object sender, EventArgs e)
+        {
             Instance = this;
 
             WebDownloader.IfBlankSet();
@@ -73,7 +77,6 @@ namespace Inferno_Mod_Manager {
                             mod = MakeNewMod(modFiles[i], true);
                     }
                 }
-                ModList.Children.Add(new ModPanel(mod));
             }
 
             var disableModFiles = Storage.GetModFiles(Storage.ModDir.DisabledMods, Storage.ModDir.DisabledInferno);
@@ -94,7 +97,6 @@ namespace Inferno_Mod_Manager {
                             disabledMod = MakeNewMod(disableModFiles[i], false);
                     }
                 }
-                ModList.Children.Add(new ModPanel(disabledMod));
             }
         }
 
@@ -108,8 +110,9 @@ namespace Inferno_Mod_Manager {
             }
         }
 
-        public void RefreshDownloadsList() {
-            DownloadList.Children.Clear();
+        public void RefreshDownloadsList()
+        {
+            stackPanelDownload.Children.Clear();
             try {
                 ParseDownloadsList();
             } catch (Exception e) {
@@ -117,7 +120,8 @@ namespace Inferno_Mod_Manager {
                 WebDownloader.Repos = new();
                 ParseDownloadsList();
             }
-            for (var i = 0; i < Storage.ModsList.Count; i++) {
+            for (var i = 0; i < Storage.ModsList.Count; i++)
+            {
                 var modData = Storage.ModsList[i];
 
                 if ((ModManifest.Instance ^ modData.Name) == ModManifest.TemplateMod)
@@ -127,16 +131,19 @@ namespace Inferno_Mod_Manager {
 
         public void RefreshAchievements() {
             achievementsTreeView.Items.Clear();
-            foreach (var achievement in SteamUserStats.Achievements) {
+            foreach (var achievement in SteamUserStats.Achievements)
+            {
                 var ap = new AchievementPanel() { ToolTip = "???" };
                 ap.__As_0x32459 = achievement;
                 ap.achName = achievement.Name;
                 if (achievement.GetIcon().HasValue)
-                    try {
+                    try
+                    {
                         var img = achievement.GetIcon().Value;
                         var rgba = new RGBASource(img.Data, checked((int)img.Width));
                         if (!achievement.State)
-                            for (var i = 0; i < img.Data.Length; i += 4) {
+                            for (var i = 0; i < img.Data.Length; i += 4)
+                            {
                                 var gray = (byte)((img.Data[i] + img.Data[i + 1] + img.Data[i + 2]) / 3);
                                 img.Data[i] = gray;
                                 img.Data[i + 1] = gray;
@@ -149,7 +156,8 @@ namespace Inferno_Mod_Manager {
                         ap.achievementImage.Source = rgba;
                         achievementsTreeView.Items.Add(ap);
                         continue;
-                    } catch (Exception) { achievementsTreeView.Items.Add(ap); }
+                    }
+                    catch (Exception) {achievementsTreeView.Items.Add(ap);}
                 ap.achievementName.Text = achievement.Name;
                 ap.achievementName.Foreground = new SolidColorBrush(Colors.White);
                 ap.ToolTip = new ToolTip() { Content = achievement.Description };
@@ -158,20 +166,24 @@ namespace Inferno_Mod_Manager {
             achievementsTreeView.Items.SortDescriptions.Add(new("achName", ListSortDirection.Ascending));
         }
 
-        private void SetupRepo() {
-            if (!File.Exists(Storage.Repo)) {
-                File.Create(Storage.Repo).Close();
-                File.WriteAllText(Storage.Repo, JsonConvert.SerializeObject(WebDownloader.Repos));
-            } else
-                WebDownloader.Repos = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(Storage.Repo));
+        private void SetupRepo()
+        {
+            if (!File.Exists(Storage.repo))
+            {
+                File.Create(Storage.repo).Close();
+                File.WriteAllText(Storage.repo, JsonConvert.SerializeObject(WebDownloader.Repos));
+            }
+            else {WebDownloader.Repos = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(Storage.repo));}
         }
 
-        public static void SetupSettings() {
-            if (!File.Exists(Storage.UserCache)) {
-                File.Create(Storage.UserCache).Close();
-                File.WriteAllText(Storage.UserCache, JsonConvert.SerializeObject(Storage.Settings));
-            } else
-                Storage.Settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Storage.UserCache));
+        public static void SetupSettings()
+        {
+            if (!File.Exists(Storage.usr))
+            {
+                File.Create(Storage.usr).Close();
+                File.WriteAllText(Storage.usr, JsonConvert.SerializeObject(Storage.Settings));
+            }
+            else {Storage.Settings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Storage.usr));}
         }
 
         private void Window_Closing(object sender, CancelEventArgs e) => SteamClient.Shutdown();
@@ -179,24 +191,28 @@ namespace Inferno_Mod_Manager {
         private void Add_Repo_Button_Click(object sender, RoutedEventArgs e) {
             try {
                 var inputDialog = new OneAnswerInputDialogWindow("Please enter a new Repo:");
-                if (inputDialog.ShowDialog() == true)
+                if (inputDialog.ShowDialog() == true) {
                     WebDownloader.Repos.Add(inputDialog.Answer);
-                else {
+                } else {
                     MessageBox.Show("Repo Addition Cancelled!");
                     RefreshModList();
                     return;
                 }
 
-                File.WriteAllText(Storage.Repo, JsonConvert.SerializeObject(WebDownloader.Repos));
+                File.WriteAllText(Storage.repo, JsonConvert.SerializeObject(WebDownloader.Repos));
                 RefreshDownloadsList();
-            } catch (Exception a) { MessageBox.Show("Couldn't Add the repo!\n" + a.Message, "ERROR!"); }
+            }
+            catch (Exception a) {MessageBox.Show("Couldn't Add the repo!\n" + a.Message, "ERROR!");}
         }
 
-        private void Add_Mod_Button_Click(object sender, RoutedEventArgs e) {
+        private void Add_Mod_Button_Click(object sender, RoutedEventArgs e)
+        {
             string Name, Author, Description, Tags, PNGUrl, Version;
-            try {
+            try
+            {
                 var inputDialogName = new InputDialogSample("Please enter the Name of the mod:", "Please enter the Description of the mod:", "Please enter the Author of the mod:", "Please enter the Tags of the mod:", "Please enter the Version number of the mod:", "Please enter the URL for the image of the mod (If there is not one leave blank):");
-                if (inputDialogName.ShowDialog() ?? true) {
+                if (inputDialogName.ShowDialog() ?? true)
+                {
                     Name = inputDialogName.Answer;
                     Description = inputDialogName.Answer2;
                     Author = inputDialogName.Answer3;
@@ -218,14 +234,17 @@ namespace Inferno_Mod_Manager {
                 }
 
                 var dd = new Mod { Name = Name, Author = Author, Description = Description, Type = Path.GetExtension(file), DownloadUrl = "null.com", PNGUrl = PNGUrl, Tags = Tags, Version = Version };
-                File.Copy(file, Storage.ModDir.Mods.Path + Name + Path.GetExtension(file));
+                File.Copy(file, Storage.InstallDir + @"\Mods\" + Name + Path.GetExtension(file));
                 ModManifest.Instance += dd;
                 RefreshModList();
-            } catch (Exception a) { MessageBox.Show("Couldn't Add the mod!\n" + a.Message, "ERROR!"); }
+            }
+            catch (Exception a) { MessageBox.Show("Couldn't Add the mod!\n" + a.Message, "ERROR!"); }
         }
 
-        public static string BrowseForFile(string title) {
-            var fileDiag = new OpenFileDialog {
+        public static string BrowseForFile(string title)
+        {
+            var fileDiag = new OpenFileDialog
+            {
                 Title = title,
                 DefaultExt = "dll",
                 Filter = "Dynamic Link Library(*.dll)|*.dll|Inferno API Mods|*.inferno",
@@ -238,9 +257,9 @@ namespace Inferno_Mod_Manager {
                 return "";
         }
 
-        private void LaunchGame_Click(object sender, RoutedEventArgs e) => ProcessHelpers.RunWithRPC(new(Storage.App), App.btd6ModdedRP);
+        private void LaunchGame_Click(object sender, RoutedEventArgs e) => ProcessHelpers.RunWithRPC(new(Storage.InstallDir + @"\BloonsTD6.exe"), App.btd6ModdedRP);
 
-        private void LaunchGameNoMods_Click(object sender, RoutedEventArgs e) => ProcessHelpers.RunWithRPC(new(Storage.App, "--no-mods"), App.btd6RP);
+        private void LaunchGameNoMods_Click(object sender, RoutedEventArgs e) => ProcessHelpers.RunWithRPC(new(Storage.InstallDir + @"\BloonsTD6.exe", "--no-mods"), App.btd6RP);
 
         private void Window_Loaded(object sender, RoutedEventArgs e) => InfernoChecker.PI_as_0x000003(InfernoChecker.PI_as_0x000002(InfernoChecker.PI_as_0x000001()));
 
