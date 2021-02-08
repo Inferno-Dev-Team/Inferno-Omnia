@@ -12,6 +12,16 @@ namespace Inferno_Mod_Manager.Utils
     internal class Storage
     {
         public static string InstallDir { get; set; }
+        
+        public static string[] GetModFiles(string dir, params string[] additional) {
+            if (Directory.Exists(dir)) {
+                string[] modFiles = Directory.GetFiles(dir, "*.dll");
+                foreach (string addition in additional)
+                    modFiles = modFiles.Combine(Directory.GetFiles(addition, "*.dll"));
+                return modFiles;
+            }
+            return new string[0];
+        }
 
         private static List<Mod> _modsList = null;
         public static List<Mod> ModsList {

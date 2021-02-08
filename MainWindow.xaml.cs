@@ -58,8 +58,8 @@ namespace Inferno_Mod_Manager
         }
 
         public void RefreshModList() {
-            ModList.Children.Clear();
-            var modFiles = Storage.GetModFiles(Storage.ModDir.Mods, Storage.ModDir.Inferno);
+            stackPanel.Children.Clear();
+            var modFiles = Storage.GetModFiles(Storage.InstallDir + @"\Mods", Storage.InstallDir + @"\Mods\Inferno");
             for (var i = 0; i < modFiles.Length; i++) {
                 Mod mod;
                 var fvi = FileVersionInfo.GetVersionInfo(modFiles[i]);
@@ -77,9 +77,11 @@ namespace Inferno_Mod_Manager
                             mod = MakeNewMod(modFiles[i], true);
                     }
                 }
+
+                stackPanel.Children.Add(new ModPanel(mod));
             }
 
-            var disableModFiles = Storage.GetModFiles(Storage.ModDir.DisabledMods, Storage.ModDir.DisabledInferno);
+            var disableModFiles = Storage.GetModFiles(Storage.InstallDir + @"\Mods\Disabled", Storage.InstallDir + @"\Mods\Inferno\Disabled");
             for (var i = 0; i < disableModFiles.Length; i++) {
                 Mod disabledMod;
                 var fvi = FileVersionInfo.GetVersionInfo(disableModFiles[i]);
@@ -97,6 +99,8 @@ namespace Inferno_Mod_Manager
                             disabledMod = MakeNewMod(disableModFiles[i], false);
                     }
                 }
+
+                stackPanel.Children.Add(new ModPanel(disabledMod));
             }
         }
 
@@ -125,7 +129,7 @@ namespace Inferno_Mod_Manager
                 var modData = Storage.ModsList[i];
 
                 if ((ModManifest.Instance ^ modData.Name) == ModManifest.TemplateMod)
-                    DownloadList.Children.Add(new DownloadPanel(modData));
+                    stackPanelDownload.Children.Add(new DownloadPanel(modData));
             }
         }
 

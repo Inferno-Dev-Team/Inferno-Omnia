@@ -12,10 +12,8 @@ using Inferno_Mod_Manager.Properties;
 
 namespace Inferno_Mod_Manager {
     class ProgramLauncher {
-        public static bool IsDebugRelease
-        {
-            get
-            {
+        public static bool IsDebugRelease {
+            get {
 #if DEBUG
                 return true;
 #else
@@ -24,10 +22,6 @@ namespace Inferno_Mod_Manager {
             }
         }
 
-namespace Inferno_Mod_Manager
-{
-    class ProgramLauncher
-    {
         [STAThread]
         public static void Main(string[] args) {
             if (IsDebugRelease)
@@ -35,7 +29,8 @@ namespace Inferno_Mod_Manager
 
             MainWindow.SetupSettings();
             if (!ProcessHelpers.IsVC2019x64Installed() && !Storage.Settings.ShownVCScreen) {
-                MessageBox.Show("You do not have Visual C installed! Continue to install it.\nTHIS WILL NOT BE SHOWN AGAIN!\nDO NOT REPORT THE APP NOT RUNNING IF YOU DIDNT INSTALL THIS");
+                MessageBox.Show(
+                    "You do not have Visual C installed! Continue to install it.\nTHIS WILL NOT BE SHOWN AGAIN!\nDO NOT REPORT THE APP NOT RUNNING IF YOU DIDNT INSTALL THIS");
                 Process.Start("https://aka.ms/vs/16/release/VC_redist.x64.exe");
                 Storage.Settings.ShownVCScreen = true;
                 throw new("Need Visual C Installed!");
@@ -71,16 +66,21 @@ namespace Inferno_Mod_Manager
                         File.Move(file, Storage.InstallDir + @"\Mods\Inferno\" + Path.GetFileName(file));
                     }
 
-            if (Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno").Combine(Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno\Disabled")).Length > 0) {
+            if (Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno")
+                .Combine(Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno\Disabled")).Length > 0) {
                 var flag = false;
-                foreach (var file in Directory.GetFiles(Storage.InstallDir + @"\Mods", "*.dll").Combine(Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno\Disabled"))) {
+                foreach (var file in Directory.GetFiles(Storage.InstallDir + @"\Mods", "*.dll")
+                    .Combine(Directory.GetFiles(Storage.InstallDir + @"\Mods\Inferno\Disabled"))) {
                     MelonHandler.GetMelonAttrib(file, out var att);
                     if (att != null)
                         flag |= att.Name.Equals("Inferno API Injector");
                 }
+
                 if (!flag)
-                    File.Create(Storage.InstallDir + @"\Mods\Inferno API Injector.dll").Write(Resources.Inferno_API_Injector, 0, Resources.Inferno_API_Injector.Length);
+                    File.Create(Storage.InstallDir + @"\Mods\Inferno API Injector.dll")
+                        .Write(Resources.Inferno_API_Injector, 0, Resources.Inferno_API_Injector.Length);
             }
+
             var app = new App {ShutdownMode = ShutdownMode.OnMainWindowClose};
             app.InitializeComponent();
             app.Run();
