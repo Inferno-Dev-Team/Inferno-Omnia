@@ -61,6 +61,15 @@ namespace Inferno_Mod_Manager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream FireWhoosh {
+            get {
+                return ResourceManager.GetStream("FireWhoosh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] Inferno_API_Injector {

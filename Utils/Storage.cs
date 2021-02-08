@@ -83,7 +83,7 @@ namespace Inferno_Mod_Manager.Utils {
             static Dir() {
                 try {
                     SteamClient.Init(960090);
-                    Install = new Dir(SteamApps.AppInstallDir() + '\\', "*.*");
+                    Install = new (SteamApps.AppInstallDir() + '\\', "*.*");
                     MelonHandler.EnsureMelonInstalled();
                     FileAssociations.EnsureAssociationsSet();
                 } catch (Exception e) {
@@ -106,13 +106,15 @@ namespace Inferno_Mod_Manager.Utils {
         }
         public class ModDir : Dir {
             static ModDir() { } //allows for the static stuff to be created in the correct order
+                                //Remake the entire C standard library in lua and run it on a java minecraft server with the customnpcs mod to allow scripting
+                                //And call it inferno omnia 2
 
             private ModDir(string dir, string pattern) : base(dir, pattern) { }
 
-            public static ModDir Mods { get; } = new ModDir(Install.Path + @"Mods\", "*.dll");
-            public static ModDir DisabledMods { get; } = new ModDir(Install.Path + @"Mods\Disabled\", "*.dll");
-            public static ModDir Inferno { get; } = new ModDir(Install.Path + @"Mods\Inferno\", "*.inferno");
-            public static ModDir DisabledInferno { get; } = new ModDir(Install.Path + @"Mods\Inferno\Disabled\", "*.inferno");
+            public static ModDir Mods { get; } = new(Install.Path + @"Mods\", "*.dll");
+            public static ModDir DisabledMods { get; } = new(Install.Path + @"Mods\Disabled\", "*.dll");
+            public static ModDir Inferno { get; } = new(Install.Path + @"Mods\Inferno\", "*.inferno");
+            public static ModDir DisabledInferno { get; } = new(Install.Path + @"Mods\Inferno\Disabled\", "*.inferno");
         }
     }
 }

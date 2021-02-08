@@ -181,6 +181,7 @@
     <Compile Include="MelonMods\MelonHandler.cs" />
     <Compile Include="ProgramLauncher.cs" />
     <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\Get.cs" />
     <Compile Include="Utils\ProcessHelpers.cs" />
     <Compile Include="Utils\RGBASource.cs" />
     <Page Include="Controller\AchievementPanel.xaml">
@@ -299,6 +300,7 @@
     <Resource Include="Resources\KosmicAuthor.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\FireWhoosh.wav" />
     <Content Include="steam_api64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

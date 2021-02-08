@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Media;
 using System.Windows;
 using DiscordRPC;
 using DiscordRPC.Logging;
+using Inferno_Mod_Manager.Utils;
 using Steamworks;
 
 namespace Inferno_Mod_Manager {
@@ -21,6 +23,8 @@ namespace Inferno_Mod_Manager {
                 State = "Idle",
                 Assets = new () {LargeImageKey = "main", LargeImageText = "Inferno - Omnia"}
             });
+            SoundPlayer sp = new SoundPlayer(Get.FireWhoosh());
+            sp.Play();
             var splashScreen = new SplashScreen("Resources/Inferno Splash Screen.png");
             splashScreen.Show(true);
             base.OnStartup(se);
