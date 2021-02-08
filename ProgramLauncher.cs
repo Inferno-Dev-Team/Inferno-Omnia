@@ -12,8 +12,23 @@ using Inferno_Mod_Manager.Properties;
 
 namespace Inferno_Mod_Manager {
     class ProgramLauncher {
+        public static bool IsDebugRelease
+        {
+            get
+            {
+#if DEBUG
+                return true;
+#else
+                return false;
+#endif
+            }
+        }
+
         [STAThread]
         public static void Main(string[] args) {
+            if (IsDebugRelease)
+                MessageBox.Show("Code messed up somewhere, report this to the devs, PROGRAM RUN IN DEBUG");
+
             MainWindow.SetupSettings();
             if (!ProcessHelpers.IsVC2019x64Installed() && !Storage.Settings.ShownVCScreen) {
                 MessageBox.Show("You do not have Visual C installed! Continue to install it.\nTHIS WILL NOT BE SHOWN AGAIN!\nDO NOT REPORT THE APP NOT RUNNING IF YOU DIDNT INSTALL THIS");
