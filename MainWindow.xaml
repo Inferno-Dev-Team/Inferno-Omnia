@@ -120,7 +120,7 @@
                     <ui:ThemeShadowChrome OpacityMask="Red" Depth="50" Grid.Row="1">
                         <Image Source="Resources/KosmicAuthor.png" RenderOptions.BitmapScalingMode="Fant" Width="100"/>
                     </ui:ThemeShadowChrome>
-                    <Label Content="KosmicDev#9999" VerticalAlignment="Center" TextOptions.TextFormattingMode="Ideal" Grid.Column="1" Grid.Row="1" FontSize="80">
+                    <Label Content="Kosmic#9999" VerticalAlignment="Center" TextOptions.TextFormattingMode="Ideal" Grid.Column="1" Grid.Row="1" FontSize="80">
                         <Label.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <LinearGradientBrush.RelativeTransform>
