@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 using Inferno_Mod_Manager.Utils;
 using Newtonsoft.Json;
 
@@ -46,12 +47,19 @@ namespace Inferno_Mod_Manager.Controller {
         }
 
         public static List<Mod> operator *(ModManifest mm, Type type) {
-            var mods = JsonConvert.DeserializeObject<List<Mod>>(File.ReadAllText(Storage.mod));
+            try {
+                var mods = JsonConvert.DeserializeObject<List<Mod>>(File.ReadAllText(Storage.mod));
 
-            if (mods == null)
-                mods = new();
+                if (mods == null)
+                    mods = new();
 
-            return mods;
+                return mods;
+            }
+            catch (Exception e) {
+                var mods = new List<Mod>();
+                File.WriteAllText(Storage.mod, JsonConvert.SerializeObject(mods));
+                return mods;
+            }
         }
     }
 }
