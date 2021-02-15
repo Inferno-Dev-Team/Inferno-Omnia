@@ -36,6 +36,7 @@ namespace Inferno_Mod_Manager.Controller
         private string author, version = "1.0", description, tags, downloadUrl, pngUrl;
         private bool _enabled = true;
         private string canonicalLocation = "";
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string CanonicalLocation
         {
             get => canonicalLocation;
