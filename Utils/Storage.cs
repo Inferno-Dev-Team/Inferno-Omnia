@@ -64,6 +64,7 @@ namespace Inferno_Mod_Manager.Utils
         public static readonly string repo = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\repo.json");
         public static readonly string mod = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\mod.json");
         public static readonly string usr = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia\\userCache.json");
+        public static readonly string dir = Environment.ExpandEnvironmentVariables("%AppData%\\InfernoOmnia");
         public static WebClient client = new();
 
         static Storage() {

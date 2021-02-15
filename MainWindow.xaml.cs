@@ -184,6 +184,10 @@ namespace Inferno_Mod_Manager
         {
             if (!File.Exists(Storage.usr))
             {
+                if (!Directory.Exists(Storage.dir))
+                {
+                    Directory.CreateDirectory(Storage.dir);
+                }
                 File.Create(Storage.usr).Close();
                 File.WriteAllText(Storage.usr, JsonConvert.SerializeObject(Storage.Settings));
             }
