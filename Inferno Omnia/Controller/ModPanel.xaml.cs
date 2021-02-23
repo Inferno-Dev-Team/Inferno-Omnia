@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InfernoOmnia.Mods;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,13 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Inferno_Omnia_2 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window {
-        public MainWindow() {
+namespace InfernoOmnia.Controller {
+    public partial class ModPanel : UserControl
+    {
+        public Mod mod { get; set; }
+
+        public ModPanel()
+        {
             InitializeComponent();
+
+            if (!mod.Equals(null))
+                DataContext = mod;
         }
     }
 }
