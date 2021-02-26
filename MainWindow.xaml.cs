@@ -109,7 +109,7 @@ namespace Inferno_Mod_Manager
             foreach (var a in WebDownloader.GetAllData()) {
                 var aa = JsonConvert.DeserializeObject<List<Mod>>(a, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore, ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
                 foreach (var aaa in aa)
-                    if (aaa != null)
+                    if (aaa != null && !Storage.ModsList.Contains(aaa))
                         Storage.ModsList.Add(aaa);
             }
         }
