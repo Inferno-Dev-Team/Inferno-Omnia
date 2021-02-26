@@ -50,7 +50,8 @@ namespace Inferno_Mod_Manager {
                 FileAssociations.EnsureAssociationsSet();
             }
             catch (Exception e) {
-                MessageBox.Show("ERROR 0x3ef93 PLEASE REPORT IN THE DISCORD" & Environment.NewLine & "Please include this message in your support ticket: " & e.Message);
+                MessageBox.Show("ERROR 0x3ef93 PLEASE REPORT IN THE DISCORD" + Environment.NewLine + "Please include this message in your support ticket: " + e.Message);
+                Environment.Exit(1);
             }
 
             _ = Directory.CreateDirectory(Storage.InstallDir + @"\Mods\Inferno");
